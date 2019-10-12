@@ -84,7 +84,24 @@
             android:fontFamily="sans-serif-light"
             android:text="หมาหาย"
             android:textAlignment="center"
-            android:textSize="20dp" />
+            android:textSize="20sp" />
+
+        <ImageView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="88dp"
+            android:layout_marginTop="89dp"
+            android:layout_marginEnd="88dp"
+            android:src="@drawable/dogimage"
+            android:layout_centerHorizontal="true">
+
+        </ImageView
+            >
+
 
     </RelativeLayout>
 
