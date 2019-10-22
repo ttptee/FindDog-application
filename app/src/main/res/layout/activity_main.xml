@@ -33,7 +33,7 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
-        android:src="@drawable/doglogo1"
+        android:src="@drawable/doglogo"
         tools:layout_editor_absoluteX="14dp"
 
         tools:layout_editor_absoluteY="170dp" />
