@@ -45,13 +45,15 @@
         android:textSize="36dp"></TextView>
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="100dp"
         android:src="@drawable/doglogo1"></ImageView>
     <LinearLayout
+        android:background="@drawable/box_border"
         android:layout_marginTop="30dp"
         android:layout_width="300dp"
         android:layout_height="40dp"
         android:layout_gravity="center"
+
         >
 
         <LinearLayout
@@ -66,10 +68,20 @@
             </ImageView>
         </LinearLayout>
 
+        <EditText
+            android:id="@+id/email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Enter your email"
+            android:textSize="15dp"
+            android:inputType="textEmailAddress" />
 
 
     </LinearLayout>
     <LinearLayout
+        android:background="@drawable/box_border"
         android:layout_marginTop="15dp"
         android:layout_width="300dp"
         android:layout_height="40dp"
@@ -88,17 +100,94 @@
             </ImageView>
         </LinearLayout>
 
+        <EditText
+            android:id="@+id/password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ems="10"
+            android:hint="Enter your password"
+            android:textSize="15dp"
+            android:inputType="textPassword" />
 
 
     </LinearLayout>
     <androidx.appcompat.widget.AppCompatButton
+        android:text="LOGIN"
         android:layout_marginTop="20dp"
         android:layout_width="150dp"
         android:layout_height="30dp"
         android:layout_gravity="center"
-        android:background="@color/colorPrimary">
+        android:background="@drawable/rounded_button">
 
     </androidx.appcompat.widget.AppCompatButton>
+    <LinearLayout
+        android:layout_marginTop="100dp"
+        android:layout_width="300dp"
+        android:layout_height="120dp"
+        android:layout_gravity="center"
+        >
+        <LinearLayout
+        android:layout_width="140dp"
+        android:layout_height="120dp"
+            android:gravity="right">
+            <ImageView
+                android:layout_marginRight="15dp"
+                android:layout_width="80dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/facebook_icon"
+                ></ImageView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="20dp"
+            android:layout_height="120dp">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/vertical_line"></ImageView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="140dp"
+            android:layout_height="120dp">
+                <ImageView
+                    android:layout_marginLeft="15dp"
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/google_icon"></ImageView>
+
+
+        </LinearLayout>
+
+
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:layout_width="163dp"
+            android:layout_height="20dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="167dp"
+            android:text="Don't have an account ?"
+            android:textAlignment="center"></TextView>
+
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="20dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="87dp"
+            android:text="Register"
+            android:textAlignment="center"
+            android:textColor="#345CE8"></TextView>
+
+    </RelativeLayout>
+
 
 
 
