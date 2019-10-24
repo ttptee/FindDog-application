@@ -178,6 +178,7 @@
             android:textAlignment="center"></TextView>
 
         <TextView
+            android:id="@+id/gotoregister"
             android:layout_width="80dp"
             android:layout_height="20dp"
             android:layout_alignParentEnd="true"

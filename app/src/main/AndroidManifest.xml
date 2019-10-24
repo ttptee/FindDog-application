@@ -18,8 +18,7 @@
         </activity>
         <activity android:name=".loginJ">
         </activity>
-        <activity android:name=".findhomeJava">
-
+        <activity android:name=".registerJ">
         </activity>
 
     </application>

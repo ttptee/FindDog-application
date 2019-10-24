@@ -17,6 +17,7 @@ protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_main);
         ImageView imgGoLogin = findViewById(R.id.loginbar);
 
+
     imgGoLogin.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
