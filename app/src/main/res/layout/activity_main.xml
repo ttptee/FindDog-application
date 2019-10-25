@@ -126,6 +126,45 @@
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="0dp"
         android:background="@color/colorPrimary">
+        <androidx.appcompat.widget.ActionMenuView
+        android:layout_width="410dp"
+        android:layout_height="85dp">
+        <LinearLayout
+            android:layout_width="135dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/gofinddog"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="15dp"
+                android:src="@drawable/lostdog_icon"></ImageView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="135dp"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/gofind"
+                android:layout_marginLeft="35dp"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/find_icon"></ImageView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="135dp"
+            android:layout_height="match_parent"
+            >
+            <ImageView
+                android:id="@+id/gofindhome"
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/findhome_icon">
+            </ImageView></LinearLayout>
+
+    </androidx.appcompat.widget.ActionMenuView>
 
     </RelativeLayout>
 
