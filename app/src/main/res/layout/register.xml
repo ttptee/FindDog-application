@@ -39,8 +39,9 @@
     </LinearLayout>
 
     <TextView
+
         android:layout_width="match_parent"
-        android:layout_height="100dp"
+        android:layout_height="160dp"
         android:text="REGISTER"
         android:gravity="center"
         android:textSize="36dp"></TextView>
@@ -74,36 +75,36 @@
         android:inputType="textPersonName"
         android:hint="Fullname" />
     </LinearLayout>
-    <LinearLayout
+<!--    <LinearLayout-->
 
-        android:layout_marginTop="10dp"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:layout_gravity="center"-->
 
-        >
+<!--        >-->
 
-        <LinearLayout
-            android:layout_width="50dp"
-            android:layout_height="match_parent">
-            <ImageView
-                android:padding="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/dogicon">
+<!--        <LinearLayout-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="match_parent">-->
+<!--            <ImageView-->
+<!--                android:padding="5dp"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:src="@drawable/dogicon">-->
 
-            </ImageView>
-        </LinearLayout>
+<!--            </ImageView>-->
+<!--        </LinearLayout>-->
 
 
-        <EditText
-        android:id="@+id/petname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Pet's name"
-        android:inputType="textPersonName" />
-    </LinearLayout>
+<!--        <EditText-->
+<!--        android:id="@+id/petname"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:ems="10"-->
+<!--        android:hint="Pet's name"-->
+<!--        android:inputType="textPersonName" />-->
+<!--    </LinearLayout>-->
     <LinearLayout
 
         android:layout_marginTop="10dp"
@@ -133,35 +134,35 @@
         android:inputType="phone"
         android:hint="Phone"/>
     </LinearLayout>
-    <LinearLayout
+<!--    <LinearLayout-->
 
-        android:layout_marginTop="10dp"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:layout_gravity="center"-->
 
-        >
+<!--        >-->
 
-        <LinearLayout
-            android:layout_width="50dp"
-            android:layout_height="match_parent">
-            <ImageView
-                android:padding="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/addressicon">
+<!--        <LinearLayout-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="match_parent">-->
+<!--            <ImageView-->
+<!--                android:padding="5dp"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:src="@drawable/addressicon">-->
 
-            </ImageView>
-        </LinearLayout>
+<!--            </ImageView>-->
+<!--        </LinearLayout>-->
 
-    <EditText
-        android:id="@+id/address"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Address" />
-    </LinearLayout>
+<!--    <EditText-->
+<!--        android:id="@+id/address"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:ems="10"-->
+<!--        android:inputType="textPersonName"-->
+<!--        android:hint="Address" />-->
+<!--    </LinearLayout>-->
     <LinearLayout
 
         android:layout_marginTop="10dp"
@@ -256,8 +257,9 @@
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:text="Submit"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center"/>
+        android:layout_marginTop="50dp"
+        android:layout_gravity="center"
+        android:background="@drawable/rounded_button"/>
 
 
 
