@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:translationZ="90dp"
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="0dp"
+        tools:layout_editor_absoluteX="29dp"
+
+        >
+        <LinearLayout
+
+            android:layout_weight="3"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <ImageView
+
+                android:id="@+id/logo"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/doglogo"
+                tools:layout_editor_absoluteX="14dp"
+
+                tools:layout_editor_absoluteY="170dp" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="right"
+            android:layout_weight="3"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+
+            <ImageView
+                android:id="@+id/loginbar"
+                android:layout_width="wrap_content"
+
+                android:layout_height="match_parent"
+                android:layout_marginEnd="15dp"
+                android:src="@drawable/login_icon">
+
+            </ImageView>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <!--    Action Bar-->
+    <!-- Missing dog-->
+
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:text="กรอกประวัติน้องหมา"
+                android:gravity="center"
+                android:textSize="25dp">
+
+            </TextView>
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                android:layout_gravity="center">
+
+            </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton
+                android:text="UPLOAD PICTURE"
+                android:textSize="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:background="@drawable/upload_btn">
+
+            </androidx.appcompat.widget.AppCompatButton>
+            <LinearLayout
+                android:layout_marginTop="30dp"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+
+                >
+
+                <LinearLayout
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="ชื่อ"
+                        android:textAlignment="center">
+
+                    </TextView>
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/breed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:textSize="15dp"
+                    android:inputType="textPersonName" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+
+                >
+
+                <LinearLayout
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="พันธุ์"
+                        android:textAlignment="center">
+
+                    </TextView>
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:textSize="15dp"
+                    android:inputType="textPersonName" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+
+                >
+
+                <LinearLayout
+                    android:layout_width="80dp"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="จุดสังเกตุ"
+                        android:textAlignment="center">
+
+                    </TextView>
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/special"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:textSize="15dp"
+                    android:inputType="textPersonName" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+
+                >
+
+                <LinearLayout
+                    android:layout_width="190dp"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="วัน เวลาที่พบเห็นครั้งสุดท้าย"
+                        android:textAlignment="center">
+
+                    </TextView>
+                </LinearLayout>
+
+                <EditText
+                    android:id="@+id/datetime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:textSize="15dp"
+                    android:inputType="datetime" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+
+                >
+
+                <LinearLayout
+                    android:layout_width="130dp"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:padding="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:text="สถานที่คาดว่าหาย"
+                        android:textAlignment="center">
+
+                    </TextView>
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp">
+
+            </LinearLayout>
+
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/detaildogsubmit"
+                android:text="submit"
+                android:layout_marginTop="20dp"
+                android:layout_width="150dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:background="@drawable/rounded_button">
+
+            </androidx.appcompat.widget.AppCompatButton>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>
