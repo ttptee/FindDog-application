@@ -8,4 +8,5 @@
     <color name="boxBorder">#C4C4C4</color>
     <color name="yellowBox">#F3CA6C</color>
     <color name="textBox">#FFF8E1</color>
+    <color name="greyText">#C9C9C9</color>
 </resources>

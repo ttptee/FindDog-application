@@ -90,7 +90,7 @@
         </LinearLayout>
 
         <EditText
-            android:id="@+id/email"
+            android:id="@+id/searchbreed"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -104,7 +104,7 @@
     <RelativeLayout
         android:layout_marginTop="25dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="250dp">
                <LinearLayout
                    android:layout_width="match_parent"
                    android:layout_height="160dp"
@@ -137,7 +137,34 @@
                        </TextView>
                    </LinearLayout>
                </LinearLayout>
+
+
+
     </RelativeLayout>
+    <LinearLayout
+        android:id="@+id/nodogbreed"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:text="There is no dog breed that you want !"
+            android:textAlignment="center"
+            android:textSize="16dp"></TextView>
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="We’re sorry , but you can find another dog breed"
+            android:textAlignment="center"
+            android:textColor="@color/greyText"></TextView>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/crydog"></ImageView>
+    </LinearLayout>
 
 
 
