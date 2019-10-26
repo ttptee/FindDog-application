@@ -6,4 +6,6 @@
     <color name="Bg">#F5F5F5</color>
     <color name="Text">#3F3E37</color>
     <color name="boxBorder">#C4C4C4</color>
+    <color name="yellowBox">#F3CA6C</color>
+    <color name="textBox">#FFF8E1</color>
 </resources>
