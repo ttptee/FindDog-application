@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
 protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         ImageView imgGoLogin = findViewById(R.id.loginbar);
 
 
@@ -25,6 +26,16 @@ protected void onCreate(Bundle savedInstanceState) {
                     startActivity(i);
         }
     });
+
+        ImageView imggofind = findViewById(R.id.gofind);
+
+        imggofind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent (MainActivity.this,detaildogJava.class);
+                startActivity(i);
+            }
+        });
 
         }
 
