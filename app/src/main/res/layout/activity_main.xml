@@ -52,7 +52,6 @@
             <ImageView
                 android:id="@+id/loginbar"
                 android:layout_width="wrap_content"
-
                 android:layout_height="match_parent"
                 android:layout_marginEnd="15dp"
                 android:src="@drawable/login_icon">
@@ -150,9 +149,9 @@
 
             <ImageView
                 android:id="@+id/gofind"
-                android:layout_marginLeft="35dp"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="5dp"
                 android:src="@drawable/find_icon"></ImageView>
         </LinearLayout>
         <LinearLayout
