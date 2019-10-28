@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "834754167024",
+    "firebase_url": "https://finddog-6e4b1.firebaseio.com",
+    "project_id": "finddog-6e4b1",
+    "storage_bucket": "finddog-6e4b1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:834754167024:android:7b34b434c82a8d2ed74235",
+        "android_client_info": {
+          "package_name": "com.example.finddog"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "834754167024-u2kg3qg2om0j35sn98ac8rvnp45ohfnq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.finddog",
+            "certificate_hash": "78e384d1b8faeb0aceab5ac08f2006760e302e60"
+          }
+        },
+        {
+          "client_id": "834754167024-cj8bij90ab5h4r54j2qve2qcn31ns67k.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZoefNpPHKdP-G-kYNEV8sNDr0zSGqh84"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "834754167024-cj8bij90ab5h4r54j2qve2qcn31ns67k.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

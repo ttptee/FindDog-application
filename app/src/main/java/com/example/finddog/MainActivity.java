@@ -9,13 +9,16 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 public class MainActivity extends AppCompatActivity {
 
 @Override
 protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+  
         ImageView imgGoLogin = findViewById(R.id.loginbar);
 
 
@@ -37,7 +40,8 @@ protected void onCreate(Bundle savedInstanceState) {
             }
         });
 
-        }
+}
+
 
 
 }
