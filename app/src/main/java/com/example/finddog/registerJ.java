@@ -3,6 +3,7 @@ package com.example.finddog;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -39,6 +40,8 @@ public class registerJ extends Activity {
        firebaseAuth = FirebaseAuth.getInstance();
 
 
+
+
         registerbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,10 +69,14 @@ private void registerUser(){
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()){
-                            Toast.makeText(registerJ.this,"Registered Successfully",Toast.LENGTH_SHORT).show();
-                        }
-                        else{
+                        if (task.isSuccessful()) {
+                            if (firebaseAuth.getCurrentUser() != null)
+                                firebaseAuth.signOut();
+                                finish();
+                                startActivity(new Intent(getApplicationContext(), loginJ.class));
+                            Toast.makeText(registerJ.this,"Register Successfully",Toast.LENGTH_SHORT).show();
+
+                        }else{
                             Toast.makeText(registerJ.this,"Could not register.. please try again",Toast.LENGTH_SHORT).show();
                         }
 

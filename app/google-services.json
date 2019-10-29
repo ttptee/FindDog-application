@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "834754167024-0skcal9dlpa04vvld97543fd6rfm1lmi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.finddog",
+            "certificate_hash": "151602c52f3d947bf12a41c2351c959d5b4caf4d"
+          }
+        },
+        {
           "client_id": "834754167024-u2kg3qg2om0j35sn98ac8rvnp45ohfnq.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

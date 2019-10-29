@@ -45,36 +45,36 @@
         android:text="REGISTER"
         android:gravity="center"
         android:textSize="36dp"></TextView>
-    <LinearLayout
+<!--    <LinearLayout-->
 
-        android:layout_marginTop="10dp"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:layout_gravity="center"-->
 
-        >
+<!--        >-->
 
-        <LinearLayout
-            android:layout_width="50dp"
-            android:layout_height="match_parent">
-            <ImageView
-                android:padding="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/fullnameicon">
+<!--        <LinearLayout-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="match_parent">-->
+<!--            <ImageView-->
+<!--                android:padding="5dp"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:src="@drawable/fullnameicon">-->
 
-            </ImageView>
-        </LinearLayout>
+<!--            </ImageView>-->
+<!--        </LinearLayout>-->
 
 
-        <EditText
-        android:id="@+id/fullname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:hint="Fullname" />
-    </LinearLayout>
+<!--        <EditText-->
+<!--        android:id="@+id/fullname"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:ems="10"-->
+<!--        android:inputType="textPersonName"-->
+<!--        android:hint="Fullname" />-->
+<!--    </LinearLayout>-->
 <!--    <LinearLayout-->
 
 <!--        android:layout_marginTop="10dp"-->
@@ -105,35 +105,35 @@
 <!--        android:hint="Pet's name"-->
 <!--        android:inputType="textPersonName" />-->
 <!--    </LinearLayout>-->
-    <LinearLayout
+<!--    <LinearLayout-->
 
-        android:layout_marginTop="10dp"
-        android:layout_width="300dp"
-        android:layout_height="40dp"
-        android:layout_gravity="center"
+<!--        android:layout_marginTop="10dp"-->
+<!--        android:layout_width="300dp"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:layout_gravity="center"-->
 
-        >
+<!--        >-->
 
-        <LinearLayout
-            android:layout_width="50dp"
-            android:layout_height="match_parent">
-            <ImageView
-                android:padding="5dp"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/phoneicon">
+<!--        <LinearLayout-->
+<!--            android:layout_width="50dp"-->
+<!--            android:layout_height="match_parent">-->
+<!--            <ImageView-->
+<!--                android:padding="5dp"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:src="@drawable/phoneicon">-->
 
-            </ImageView>
-        </LinearLayout>
+<!--            </ImageView>-->
+<!--        </LinearLayout>-->
 
-    <EditText
-        android:id="@+id/phone"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="phone"
-        android:hint="Phone"/>
-    </LinearLayout>
+<!--    <EditText-->
+<!--        android:id="@+id/phone"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:ems="10"-->
+<!--        android:inputType="phone"-->
+<!--        android:hint="Phone"/>-->
+<!--    </LinearLayout>-->
 <!--    <LinearLayout-->
 
 <!--        android:layout_marginTop="10dp"-->
