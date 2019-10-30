@@ -16,6 +16,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.facebook.CallbackManager;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -26,7 +27,7 @@ public class registerJ extends Activity {
     private Button registerbtn;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
-
+    private CallbackManager callbackManager;
     private FirebaseAuth mAuth;
     @SuppressLint("CutPasteId")
     @Override

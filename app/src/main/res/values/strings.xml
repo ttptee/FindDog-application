@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">FindDog</string>
+    <string name="facebook_app_id">2485180171535598</string> <string name="fb_login_protocol_scheme">fb2485180171535598</string>
+
 </resources>

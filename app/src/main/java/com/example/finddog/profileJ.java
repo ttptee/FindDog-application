@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.facebook.login.LoginResult;
+import com.facebook.login.widget.LoginButton;
 
 public class profileJ extends AppCompatActivity implements View.OnClickListener{
 
@@ -23,7 +25,9 @@ public class profileJ extends AppCompatActivity implements View.OnClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.profile);
         firebaseAuth = FirebaseAuth.getInstance();
+/////////////////////////////////////////////////////////
 
+        ////////////////////////////////////////////////
         if(firebaseAuth.getCurrentUser() == null){
             finish();
             startActivity(new Intent(this, loginJ.class));

@@ -12,3 +12,7 @@
 /captures
 .externalNativeBuild
 .cxx
+
+facebook/build.gradle
+
+facebook/facebook.aar
