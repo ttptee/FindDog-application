@@ -3,9 +3,12 @@ package com.example.finddog;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Instrumentation;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -77,6 +80,9 @@ public class MainActivity extends AppCompatActivity {
                 Intent i = new Intent(MainActivity.this, allAdoptPost.class);
                 startActivity(i);
             }
+
+
+
         });
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("postmiss");
