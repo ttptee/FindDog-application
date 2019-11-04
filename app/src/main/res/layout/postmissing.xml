@@ -81,17 +81,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="120dp"
                 android:gravity="center"
-                android:text="กรอกประวัติน้องหมา"
+                android:text="ตามหาน้องหมาหาย"
                 android:textSize="25dp">
 
             </TextView>
 
-            <ImageButton
-                android:id="@+id/btnAddImg"
+            <LinearLayout
                 android:layout_width="300dp"
                 android:layout_height="200dp"
-                android:background="@drawable/addimg"
-                android:layout_gravity="center"></ImageButton>
+                android:layout_gravity="center">
+
+            </LinearLayout>
 
 
             <LinearLayout
@@ -296,18 +296,32 @@
 
             </LinearLayout>
 
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/detaildogsubmit"
-                android:layout_width="150dp"
-                android:layout_height="30dp"
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
-                android:layout_marginBottom="80dp"
-                android:background="@drawable/rounded_button"
-                android:text="submit">
+                android:layout_marginTop="10dp"
 
-            </androidx.appcompat.widget.AppCompatButton>
+                >
+
+                <LinearLayout
+                    android:layout_width="140dp"
+                    android:layout_height="match_parent"
+                    >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="10dp"
+                        android:text="ความคิดเห็นทั้งหมด"
+                        android:textAlignment="center">
+
+                    </TextView>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
 
         </LinearLayout>
     </ScrollView>

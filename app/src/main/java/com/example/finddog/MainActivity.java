@@ -30,12 +30,12 @@ protected void onCreate(Bundle savedInstanceState) {
         }
     });
 
-        ImageView imggofind = findViewById(R.id.gofind);
+        ImageView imggofinddog = findViewById(R.id.gofinddog);
 
-        imggofind.setOnClickListener(new View.OnClickListener() {
+        imggofinddog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent (MainActivity.this,detaildogJava.class);
+                Intent i = new Intent (MainActivity.this,AllMissingPost.class);
                 startActivity(i);
             }
         });

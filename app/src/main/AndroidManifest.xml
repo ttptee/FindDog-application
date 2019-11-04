@@ -22,6 +22,7 @@
         <activity android:name=".loginJ"></activity>
         <activity android:name=".registerJ"></activity>
         <activity android:name=".detaildogJava" />
+        <activity android:name=".AllMissingPost" />
     </application>
 
 </manifest>

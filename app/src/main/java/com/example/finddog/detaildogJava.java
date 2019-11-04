@@ -86,7 +86,7 @@ public class detaildogJava extends Activity implements View.OnClickListener{
         if (v == buttonSaveDetail){
             saveDetail();
             finish();
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, AllMissingPost.class));
         }
     }
 
