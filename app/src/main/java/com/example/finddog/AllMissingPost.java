@@ -67,7 +67,7 @@ public class AllMissingPost extends AppCompatActivity {
             }
         };
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 2);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 1);
         missingList.setLayoutManager(gridLayoutManager);
         adapter.startListening();
         missingList.setAdapter(adapter);
