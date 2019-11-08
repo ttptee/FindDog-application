@@ -7,60 +7,60 @@
     tools:context=".AllMissingPost">
 
     <LinearLayout
-        android:translationZ="90dp"
-        android:id="@+id/linearLayout"
+    android:translationZ="90dp"
+    android:id="@+id/linearLayout"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@color/colorPrimary"
+    app:layout_constraintTop_toTopOf="parent"
+    android:layout_marginStart="0dp"
+    tools:layout_editor_absoluteX="29dp"
+
+    >
+    <LinearLayout
+
+        android:layout_weight="3"
+        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/colorPrimary"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="0dp"
-        tools:layout_editor_absoluteX="29dp"
-
+        android:layout_height="wrap_content"
         >
-        <LinearLayout
 
-            android:layout_weight="3"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
+        <ImageView
 
-            <ImageView
+            android:id="@+id/logo"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:src="@drawable/doglogo"
+            tools:layout_editor_absoluteX="14dp"
 
-                android:id="@+id/logo"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="15dp"
-                android:src="@drawable/doglogo"
-                tools:layout_editor_absoluteX="14dp"
-
-                tools:layout_editor_absoluteY="170dp" />
-
-
-        </LinearLayout>
-        <LinearLayout
-            android:gravity="right"
-            android:layout_weight="3"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-
-
-            <ImageView
-                android:id="@+id/add"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_marginEnd="15dp"
-                android:src="@drawable/addicon">
-
-            </ImageView>
-
-        </LinearLayout>
+            tools:layout_editor_absoluteY="170dp" />
 
 
     </LinearLayout>
+    <LinearLayout
+        android:gravity="right"
+        android:layout_weight="3"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+
+        <ImageView
+            android:id="@+id/add"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="15dp"
+            android:src="@drawable/addicon">
+
+        </ImageView>
+
+    </LinearLayout>
+
+
+</LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/missingListAll"
