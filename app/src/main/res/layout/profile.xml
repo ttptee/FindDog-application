@@ -31,6 +31,7 @@
             android:id="@+id/editTextPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="number"
             android:hint="Phone" >
         </EditText>
         <Button
