@@ -46,7 +46,7 @@ public class loginJ extends AppCompatActivity implements View.OnClickListener {
 
         if(firebaseAuth.getCurrentUser() != null){
                 finish();
-                startActivity(new Intent(getApplicationContext(),profileJ.class));
+                startActivity(new Intent(getApplicationContext(),viewProfile.class));
         }
 
         emailLogin = (EditText) findViewById(R.id.emaillogin);
@@ -82,7 +82,7 @@ public class loginJ extends AppCompatActivity implements View.OnClickListener {
                         progressDialog.dismiss();
                         if (task.isSuccessful()){
                             finish();
-                            startActivity(new Intent(getApplicationContext(),profileJ.class));
+                            startActivity(new Intent(getApplicationContext(), viewProfile.class));
                         }
                     }
                 });

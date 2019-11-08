@@ -1,5 +1,6 @@
 package com.example.finddog;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -13,10 +14,13 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
-public class profileJ extends AppCompatActivity implements View.OnClickListener{
+public class editProfileJ extends AppCompatActivity implements View.OnClickListener{
 
     private FirebaseAuth firebaseAuth;
 
@@ -25,13 +29,14 @@ public class profileJ extends AppCompatActivity implements View.OnClickListener{
 
     private DatabaseReference databaseReference;
 
+
     private EditText editTextName, editTextPhone;
     private Button buttonSaveInfo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.profile);
+        setContentView(R.layout.edit_profile);
         firebaseAuth = FirebaseAuth.getInstance();
 
         if(firebaseAuth.getCurrentUser() == null){
@@ -47,6 +52,7 @@ public class profileJ extends AppCompatActivity implements View.OnClickListener{
 //        }
 
         databaseReference = FirebaseDatabase.getInstance().getReference();
+
 
         editTextName = (EditText) findViewById(R.id.editTextName);
         editTextPhone = (EditText) findViewById(R.id.editTextPhone);
@@ -68,7 +74,7 @@ public class profileJ extends AppCompatActivity implements View.OnClickListener{
         imggofind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent (profileJ.this,detaildogJava.class);
+                Intent i = new Intent (editProfileJ.this,detaildogJava.class);
                 startActivity(i);
             }
         });
@@ -91,6 +97,9 @@ public class profileJ extends AppCompatActivity implements View.OnClickListener{
     }
 
 
+
+
+
     @Override
     public void onClick(View v) {
         if(v == buttonLogout){
@@ -101,6 +110,7 @@ public class profileJ extends AppCompatActivity implements View.OnClickListener{
 
         if (v == buttonSaveInfo){
             saveUserInformation();
+            startActivity(new Intent(this, viewProfile.class));
         }
 
 
