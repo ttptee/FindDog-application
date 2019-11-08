@@ -1,16 +1,14 @@
 package com.example.finddog;
 
-import android.os.Bundle;
-
 import androidx.appcompat.app.AppCompatActivity;
 
-public class findhomeJ extends AppCompatActivity {
+import android.os.Bundle;
+
+public class allAdoptPost extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.findhome);
+        setContentView(R.layout.all_adopt_post);
     }
-
-
 }
