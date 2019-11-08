@@ -18,11 +18,9 @@ public class MainActivity extends AppCompatActivity {
 protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-  
+
         ImageView imgGoLogin = findViewById(R.id.loginbar);
-
-
-    imgGoLogin.setOnClickListener(new View.OnClickListener() {
+                imgGoLogin.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             Intent i = new Intent (MainActivity.this,loginJ.class);
@@ -31,7 +29,6 @@ protected void onCreate(Bundle savedInstanceState) {
     });
 
         ImageView imggofinddog = findViewById(R.id.gofinddog);
-
         imggofinddog.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -39,6 +36,15 @@ protected void onCreate(Bundle savedInstanceState) {
                 startActivity(i);
             }
         });
+
+        ImageView imggoadopt = findViewById(R.id.goadopt);
+        imggoadopt.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent i = new Intent (MainActivity.this,allAdoptPost.class);
+            startActivity(i);
+        }
+    });
 
 }
 
