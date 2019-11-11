@@ -41,6 +41,15 @@ public class viewProfile extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
+        ImageView logogo = findViewById(R.id.logo);
+        logogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(viewProfile.this, MainActivity.class);
+                startActivity(i);
+            }
+        });
         databaseReferenceUser = FirebaseDatabase.getInstance().getReference().child("user");
         firebaseAuth = FirebaseAuth.getInstance();
 
@@ -63,6 +72,26 @@ public class viewProfile extends AppCompatActivity {
                 name.setText(n);
                 phone.setText(p);
 
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+        final String user_id = firebaseAuth.getCurrentUser().getUid();
+        databaseReferenceUser.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                if(dataSnapshot.hasChild(user_id)){
+                    finish();
+                    startActivity(new Intent(viewProfile.this,viewProfile.class));
+                }   else {
+                    finish();
+                    startActivity(new Intent(viewProfile.this,editProfileJ.class));
+                }
             }
 
             @Override
@@ -105,6 +134,5 @@ public class viewProfile extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        checkUser();
     }
 }

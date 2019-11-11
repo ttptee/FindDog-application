@@ -69,15 +69,7 @@ public class editProfileJ extends AppCompatActivity implements View.OnClickListe
 
 
 
-        ImageView imggofind = findViewById(R.id.gofind);
 
-        imggofind.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent (editProfileJ.this,detaildogJava.class);
-                startActivity(i);
-            }
-        });
 
 
     }
@@ -93,6 +85,9 @@ public class editProfileJ extends AppCompatActivity implements View.OnClickListe
         databaseReference.child("user").child(user.getUid()).setValue(userInformation);
 
         Toast.makeText(this, "Information Saved..", Toast.LENGTH_SHORT).show();
+
+        finish();
+        startActivity(new Intent(this, viewProfile.class));
 
     }
 
@@ -110,7 +105,6 @@ public class editProfileJ extends AppCompatActivity implements View.OnClickListe
 
         if (v == buttonSaveInfo){
             saveUserInformation();
-            startActivity(new Intent(this, viewProfile.class));
         }
 
 

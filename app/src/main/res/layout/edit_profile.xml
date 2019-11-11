@@ -52,7 +52,7 @@
 
 
     </LinearLayout>
-    <RelativeLayout
+    <!--<RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_alignParentBottom="true"
@@ -101,5 +101,5 @@
 
         </androidx.appcompat.widget.ActionMenuView>
 
-    </RelativeLayout>
+    </RelativeLayout>-->
 </RelativeLayout>
