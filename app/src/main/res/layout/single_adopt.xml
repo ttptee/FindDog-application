@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:translationZ="90dp"
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/colorPrimary"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="0dp"
+        tools:layout_editor_absoluteX="29dp"
+
+        >
+        <LinearLayout
+
+            android:layout_weight="3"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <ImageView
+
+                android:id="@+id/logo"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:src="@drawable/doglogo"
+                tools:layout_editor_absoluteX="14dp"
+
+                tools:layout_editor_absoluteY="170dp" />
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:gravity="right"
+            android:layout_weight="3"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+
+            <ImageView
+                android:id="@+id/loginbar"
+                android:layout_width="wrap_content"
+
+                android:layout_height="match_parent"
+                android:layout_marginEnd="15dp"
+                android:src="@drawable/login_icon">
+
+            </ImageView>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <!--    Action Bar-->
+    <!-- Missing dog-->
+
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:gravity="center"
+                android:text="ตามหาน้องหมาหาย"
+                android:textSize="25dp">
+
+            </TextView>
+
+            <ImageView
+                android:id="@+id/imgShow"
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                android:background="@color/colorPrimaryDark"
+                android:layout_gravity="center"></ImageView>
+
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+
+                >
+
+                <LinearLayout
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="10dp"
+                        android:text="ชื่อ"
+                        android:textAlignment="center">
+
+                    </TextView>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:textSize="15dp"
+                    android:padding="10dp"/>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+
+                >
+
+                <LinearLayout
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="10dp"
+                        android:text="พันธุ์"
+                        android:textAlignment="center">
+
+                    </TextView>
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/breed"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:ems="10"
+                    android:inputType="textPersonName"
+                    android:textSize="15dp"
+                    android:padding="10dp"/>
+
+
+            </LinearLayout>
+
+
+
+            <!--<LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+
+                >
+
+                <LinearLayout
+                    android:layout_width="130dp"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="10dp"
+                        android:text="สถานที่คาดว่าหาย"
+                        android:textAlignment="center">
+
+                    </TextView>
+                </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="80dp"
+                android:layout_marginTop="15dp">
+
+            </LinearLayout>-->
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".viewProfile"></activity>
+        <activity android:name=".SingleAdopt"></activity>
+        <activity android:name=".viewProfile" />
         <activity android:name=".allAdoptPost" />
         <activity android:name=".addPostAdopt" />
         <activity android:name=".editProfileJ" />

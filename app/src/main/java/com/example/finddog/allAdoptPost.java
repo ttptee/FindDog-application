@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
@@ -47,6 +48,21 @@ public class allAdoptPost extends AppCompatActivity {
 
                 viewHolder.postName.setText(missingBlog.getName());
                 viewHolder.postBreed.setText(missingBlog.getBreed());
+
+
+                final String post_key = getRef(i).getKey();
+                viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        /*Toast.makeText(allAdoptPost.this,post_key,Toast.LENGTH_SHORT).show();*/
+                        Intent singleAdoptPage = new Intent(allAdoptPost.this,SingleAdopt.class);
+                        singleAdoptPage.putExtra("blog_id",post_key);
+                        startActivity(singleAdoptPage);
+                    }
+                });
+
+
+
             }
 
             @NonNull
