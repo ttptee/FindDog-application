@@ -83,6 +83,8 @@ public class loginJ extends AppCompatActivity implements View.OnClickListener {
                         if (task.isSuccessful()){
                             finish();
                             startActivity(new Intent(getApplicationContext(), viewProfile.class));
+                        }else {
+                            Toast.makeText(loginJ.this,"Please Try Again",Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

@@ -86,8 +86,6 @@ public class editProfileJ extends AppCompatActivity implements View.OnClickListe
 
         Toast.makeText(this, "Information Saved..", Toast.LENGTH_SHORT).show();
 
-        finish();
-        startActivity(new Intent(this, viewProfile.class));
 
     }
 
@@ -105,6 +103,8 @@ public class editProfileJ extends AppCompatActivity implements View.OnClickListe
 
         if (v == buttonSaveInfo){
             saveUserInformation();
+            finish();
+            startActivity(new Intent(this, viewProfile.class));
         }
 
 
