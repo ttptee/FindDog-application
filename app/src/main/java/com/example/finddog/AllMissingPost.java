@@ -56,6 +56,16 @@ public class AllMissingPost extends AppCompatActivity {
 
                 viewHolder.postName.setText(missingBlog.getName());
                 viewHolder.postBreed.setText(missingBlog.getBreed());
+
+                final String post_key = getRef(i).getKey();
+                viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent singleMissingPage = new Intent(AllMissingPost.this,SingleMissing.class);
+                        singleMissingPage.putExtra("blog_id",post_key);
+                        startActivity(singleMissingPage);
+                    }
+                });
             }
 
             @NonNull

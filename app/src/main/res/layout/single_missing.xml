@@ -91,6 +91,14 @@
                 android:layout_height="200dp"
                 android:layout_gravity="center">
 
+                <ImageView
+                    android:id="@+id/imgShow"
+                    android:layout_width="300dp"
+                    android:layout_height="200dp"
+                    android:background="@color/colorPrimaryDark"
+                    android:layout_gravity="center"></ImageView>
+
+
             </LinearLayout>
 
 
@@ -116,14 +124,15 @@
                     </TextView>
                 </LinearLayout>
 
-                <EditText
+                <TextView
                     android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    android:padding="10dp"/>
 
 
             </LinearLayout>
@@ -150,14 +159,15 @@
                     </TextView>
                 </LinearLayout>
 
-                <EditText
+                <TextView
                     android:id="@+id/breed"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    android:padding="10dp"/>
 
 
             </LinearLayout>
@@ -184,14 +194,15 @@
                     </TextView>
                 </LinearLayout>
 
-                <EditText
+                <TextView
                     android:id="@+id/special"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    android:padding="10dp"/>
 
 
             </LinearLayout>
@@ -218,19 +229,20 @@
                     </TextView>
                 </LinearLayout>
 
-                <EditText
+                <TextView
                     android:id="@+id/datetime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="datetime"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    android:padding="10dp"/>
 
 
             </LinearLayout>
 
-            <LinearLayout
+            <!--<LinearLayout
                 android:layout_width="300dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
@@ -260,7 +272,7 @@
                 android:layout_height="80dp"
                 android:layout_marginTop="15dp">
 
-            </LinearLayout>
+            </LinearLayout>-->
 
             <LinearLayout
                 android:layout_width="300dp"
@@ -284,14 +296,15 @@
                     </TextView>
                 </LinearLayout>
 
-                <EditText
+                <TextView
                     android:id="@+id/prize"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="number"
-                    android:textSize="15dp" />
+                    android:textSize="15dp"
+                    android:padding="10dp"/>
 
 
             </LinearLayout>

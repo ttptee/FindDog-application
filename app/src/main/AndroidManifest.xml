@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".SingleAdopt"></activity>
+        <activity android:name=".SingleMissing" />
         <activity android:name=".viewProfile" />
         <activity android:name=".allAdoptPost" />
         <activity android:name=".addPostAdopt" />
