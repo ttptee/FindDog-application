@@ -162,6 +162,15 @@ public class allAdoptPost extends AppCompatActivity {
                     {
                         final MissingBlog missingBlog = dss.getValue(MissingBlog.class);
                         arrayList.add(missingBlog);
+                        final String pos_key = dss.getKey();
+                        MyAdapter.MyAdapterViewHolder.class.getClass();
+
+
+                        if (dss.getKey()!=null){
+                        //final String pos_key = dss.getKey();
+                        Intent singleAdoptPage = new Intent(allAdoptPost.this,SingleAdopt.class);
+                        singleAdoptPage.putExtra("blog_id",pos_key);
+                        startActivity(singleAdoptPage);}
                     }
 
                     MyAdapter myAdapter = new MyAdapter(getApplicationContext(),arrayList);

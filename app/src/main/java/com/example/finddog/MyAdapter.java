@@ -1,11 +1,13 @@
 package com.example.finddog;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -13,6 +15,8 @@ import java.util.ArrayList;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
+import static androidx.core.content.ContextCompat.startActivity;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyAdapterViewHolder> {
 
@@ -63,6 +67,24 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyAdapterViewHolde
             postName = (TextView) itemView.findViewById(R.id.postName);
             postBreed = (TextView) itemView.findViewById(R.id.postBreed);
             postImg = (ImageView)itemView.findViewById(R.id.postImage);
+
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    arrayList.get(getAdapterPosition());
+                    int mPost_key = getAdapterPosition();
+                    Intent singleAdoptPage = new Intent(c,SingleAdopt.class);
+                    singleAdoptPage.putExtra("blog_id", mPost_key);
+                    c.startActivity(singleAdoptPage);
+                    Toast.makeText(c, mPost_key,
+                            Toast.LENGTH_LONG).show();
+
+
+
+                }
+            });
 
 
         }
