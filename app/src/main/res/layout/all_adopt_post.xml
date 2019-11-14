@@ -109,9 +109,11 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="ค้นหาสายพันธุ์"
                 android:inputType="text"
-                android:textSize="15dp" />
+                android:textSize="15dp"
+                app:defaultQueryHint="enter breed"
+                app:iconifiedByDefault="false"
+                app:searchIcon="@null" />
 
 
         </LinearLayout>
