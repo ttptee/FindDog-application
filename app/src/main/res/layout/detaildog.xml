@@ -3,6 +3,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.finddog.detaildogJava"
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -256,9 +257,39 @@
             </LinearLayout>
 
             <LinearLayout
+
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_marginTop="15dp">
+                android:layout_height="280dp"
+                android:layout_marginTop="15dp"
+                android:orientation="vertical"
+                android:weightSum="1">
+<!--            <com.google.android.gms.maps.MapView-->
+
+                <SearchView
+                    android:id="@+id/search"
+                    android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginBottom="10dp"
+
+                    android:background="#FFFFFF"
+                    android:elevation="5dp"
+                    android:iconifiedByDefault="false"
+                    android:queryHint="Search a place" ></SearchView>
+
+                <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                    android:id="@+id/mmap"
+                    android:name="com.google.android.gms.maps.SupportMapFragment"
+                    android:layout_width="300dp"
+                    android:layout_height="200dp"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginBottom="10dp"
+                    tools:context="com.example.finddog.detaildogJava">
+
+                </fragment>
+
+
 
             </LinearLayout>
 

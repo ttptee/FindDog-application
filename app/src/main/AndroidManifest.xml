@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.finddog">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -28,6 +30,9 @@
         <activity android:name=".registerJ" />
         <activity android:name=".detaildogJava" />
         <activity android:name=".AllMissingPost" />
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDNERQwxMMdmzi8oI2WvSku_bOKjX2nm4A"/>
     </application>
 
 </manifest>
