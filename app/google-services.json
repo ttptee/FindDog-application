@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "834754167024-63kv141log9455jb4srqsue22f894cm4.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.finddog",
+            "certificate_hash": "a69228a6d1234bfcfe23c94dae0df2db6fa31fb2"
+          }
+        },
+        {
           "client_id": "834754167024-0skcal9dlpa04vvld97543fd6rfm1lmi.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -37,7 +45,7 @@
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyAZoefNpPHKdP-G-kYNEV8sNDr0zSGqh84"
+          "current_key": "AIzaSyDNERQwxMMdmzi8oI2WvSku_bOKjX2nm4A"
         }
       ],
       "services": {
