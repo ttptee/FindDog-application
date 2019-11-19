@@ -1,0 +1,9 @@
+Chihuahua
+GermanShepherd
+LabradorRetriever
+ShihTzu
+Siberianhusky
+beagle
+bulldog
+goldenRetriever
+shiba

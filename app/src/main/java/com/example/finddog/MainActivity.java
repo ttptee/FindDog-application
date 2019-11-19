@@ -1,10 +1,12 @@
 package com.example.finddog;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Instrumentation;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
@@ -20,35 +22,26 @@ public class MainActivity extends AppCompatActivity {
 
 @Override
 protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-  
-        ImageView imgGoLogin = findViewById(R.id.loginbar);
+    super.onCreate(savedInstanceState);
+    setContentView(R.layout.activity_main);
 
+    ImageView imgGoLogin = findViewById(R.id.loginbar);
+    ImageView imgGoFind = findViewById(R.id.gofind);
 
     imgGoLogin.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Intent i = new Intent (MainActivity.this,loginJ.class);
-                    startActivity(i);
+            Intent i = new Intent(MainActivity.this, loginJ.class);
+            startActivity(i);
         }
     });
-
-        ImageView imggofind = findViewById(R.id.gofind);
-
-        imggofind.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent (MediaStore.ACTION_IMAGE_CAPTURE);
-                startActivityForResult(i,111);
-            }
-
-
-
-        });
-
+    imgGoFind.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent e = new Intent(MainActivity.this, showPicAndML.class);
+            startActivity(e);
+        }
+    });
 }
-
-
 
 }
