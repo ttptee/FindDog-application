@@ -12,6 +12,9 @@ android {
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         resValue "string", "google_maps_key", (project.findProperty("GOOGLE_MAPS_API_KEY") ?: "")
+        aaptOptions {
+            noCompress "tflite"
+        }
     }
     buildTypes {
         debug {
@@ -55,6 +58,8 @@ dependencies {
     implementation 'com.android.support:appcompat-v7:+'
     implementation 'com.google.android.material:material:1.0.0'
     implementation 'androidx.cardview:cardview:1.0.0'
+    implementation 'com.google.firebase:firebase-ml-vision:24.0.1'
+    implementation 'com.google.firebase:firebase-ml-vision-automl:18.0.3'
 }
 
 apply plugin: 'com.google.gms.google-services'

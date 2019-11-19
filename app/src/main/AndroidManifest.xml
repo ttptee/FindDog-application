@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.example.finddog">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -19,6 +21,12 @@
         <activity android:name=".allAdoptPost" />
         <activity android:name=".addPostAdopt" />
         <activity android:name=".editProfileJ" />
+        android:theme="@style/AppTheme"
+      >
+        <meta-data
+            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+            android:value="label" />
+        <activity android:name=".profileJ" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -29,6 +37,7 @@
         <activity android:name=".loginJ" />
         <activity android:name=".registerJ" />
         <activity android:name=".detaildogJava" />
+        <activity android:name=".showPicAndML" />
         <activity android:name=".AllMissingPost" />
         <meta-data
             android:name="com.google.android.geo.API_KEY"
