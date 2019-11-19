@@ -408,6 +408,39 @@
 
             </LinearLayout>
 
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="40dp"
+
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:src="@drawable/usericon"
+                    android:layout_gravity="center"></ImageView>
+                <EditText
+                    android:id="@+id/commentBox"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.6"
+                    android:hint="Enter comment..."
+                    android:inputType="textCapSentences|textMultiLine"></EditText>
+                <Button
+                    android:id="@+id/sendButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="0.2"
+                    android:hint="send"
+                    android:layout_gravity="center"
+                    android:background="@drawable/rounded_button"></Button>
+
+
+
+            </LinearLayout>
+
 
         </LinearLayout>
     </ScrollView>

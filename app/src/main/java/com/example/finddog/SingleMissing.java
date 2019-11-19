@@ -3,11 +3,19 @@ package com.example.finddog;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.KeyEvent;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -15,7 +23,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-public class SingleMissing extends AppCompatActivity {
+import java.text.DateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+
+public class SingleMissing extends AppCompatActivity implements View.OnClickListener {
     private String mPost_key = null;
     private DatabaseReference databaseReference;
     private DatabaseReference reff;
@@ -29,6 +41,11 @@ public class SingleMissing extends AppCompatActivity {
     private TextView textOwner;
     private ImageView image;
 
+    private EditText editTextComment;
+    private Button buttonSendComment;
+
+    private FirebaseAuth firebaseAuth;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,6 +54,14 @@ public class SingleMissing extends AppCompatActivity {
         databaseReference = FirebaseDatabase.getInstance().getReference().child("postmiss");
         mPost_key = getIntent().getExtras().getString("blog_id");
         reff = FirebaseDatabase.getInstance().getReference().child("user");
+
+
+        firebaseAuth = FirebaseAuth.getInstance();
+
+        editTextComment = (EditText) findViewById(R.id.commentBox);
+        buttonSendComment = (Button) findViewById(R.id.sendButton);
+
+        buttonSendComment.setOnClickListener(this);
 
         textName = (TextView) findViewById(R.id.name);
         textBreed = (TextView) findViewById(R.id.breed);
@@ -49,6 +74,19 @@ public class SingleMissing extends AppCompatActivity {
 
          /*Toast.makeText(SingleMissing.this,mPost_key,Toast.LENGTH_SHORT).show();*/
 
+        editTextComment.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            public boolean onEditorAction(TextView v, int actionId, KeyEvent event) {
+                if ((event != null && (event.getKeyCode() == KeyEvent.KEYCODE_ENTER)) ) {
+                    sendComment();
+                    Toast.makeText(SingleMissing.this,"send by enter",Toast.LENGTH_SHORT).show();
+                }
+                return false;
+            }
+        });
+
+
+
+
 
         databaseReference.child(mPost_key).addValueEventListener(new ValueEventListener() {
             @Override
@@ -60,6 +98,8 @@ public class SingleMissing extends AppCompatActivity {
                 String post_datetime =(String) dataSnapshot.child("datetime").getValue();
                 String post_prize =(String) dataSnapshot.child("prize").getValue();
                 String uid =(String) dataSnapshot.child("uid").getValue();
+
+
 
                 reff.child(uid).addValueEventListener(new ValueEventListener() {
                     @Override
@@ -88,10 +128,40 @@ public class SingleMissing extends AppCompatActivity {
                 Picasso.get().load(post_img).into(image);
             }
 
+
+
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
+
+
         });
+
     }
+
+
+
+    private void sendComment() {
+
+        final String comment = editTextComment.getText().toString().trim();
+        final String uid = firebaseAuth.getCurrentUser().getUid();
+
+        DatabaseReference addComment = databaseReference.child(mPost_key).child("comment").push();
+        addComment.child("comment").setValue(comment);
+        addComment.child("uid").setValue(uid);
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == buttonSendComment) {
+            Toast.makeText(SingleMissing.this,"send by click",Toast.LENGTH_SHORT).show();
+            sendComment();
+            Toast.makeText(SingleMissing.this, "Add Complete", Toast.LENGTH_SHORT).show();
+
+
+        }
+    }
+
 }
