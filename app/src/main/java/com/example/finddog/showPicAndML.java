@@ -12,6 +12,7 @@ import android.graphics.Bitmap;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -38,6 +39,8 @@ import com.google.firebase.ml.vision.label.FirebaseVisionImageLabel;
 import com.google.firebase.ml.vision.label.FirebaseVisionImageLabeler;
 import com.google.firebase.ml.vision.label.FirebaseVisionOnDeviceAutoMLImageLabelerOptions;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 
 public class showPicAndML extends AppCompatActivity {
@@ -58,22 +61,61 @@ public class showPicAndML extends AppCompatActivity {
                 startActivityForResult(intent,0);
             }
         });
-
+        Button GoGallery = findViewById(R.id.importpicbtn);
+        GoGallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentGoGal = new Intent(Intent.ACTION_GET_CONTENT);
+                intentGoGal.setType("image/*");
+                startActivityForResult(Intent.createChooser(intentGoGal
+                        , "Select photo from"), 1);
+            }
+        });
     }
+//////////////////////////////
 
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        Bitmap bitmap = (Bitmap)data.getExtras().get("data");
+public void onActivityResult(int requestCode, int resultCode
+        , Intent data) {
+    if (requestCode == 1 && resultCode == RESULT_OK) {
+        Uri uri = data.getData();
+
+        Bitmap bitmap = null;
+        try {
+            bitmap = MediaStore.Images.Media.getBitmap(showPicAndML.this.getContentResolver(), uri);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         imageView.setImageBitmap(bitmap);
         imageFromBitmap(bitmap);
 
-
-        FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(bitmap);
-////////////////////////////////
-
-
     }
+    else {
+
+            super.onActivityResult(requestCode, resultCode, data);
+            Bitmap bitmap = (Bitmap)data.getExtras().get("data");
+            imageView.setImageBitmap(bitmap);
+            imageFromBitmap(bitmap);
+
+
+            FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(bitmap);
+    }
+}
+    /////////////////////////////////////////
+//    @Override
+//    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//        Bitmap bitmap = (Bitmap)data.getExtras().get("data");
+//        imageView.setImageBitmap(bitmap);
+//        imageFromBitmap(bitmap);
+//
+//
+//        FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(bitmap);
+
+
+
+    //}
+
+    ///////////////////////////////////////////
     private static final SparseIntArray ORIENTATIONS = new SparseIntArray();
     static {
         ORIENTATIONS.append(Surface.ROTATION_0, 90);
@@ -150,9 +192,13 @@ public class showPicAndML extends AppCompatActivity {
                             // ...
                             for (FirebaseVisionImageLabel label: labels) {
                                 String text = label.getText();
+                                String text2 = label.getEntityId();
                                 float confidence = label.getConfidence();
                                 TextView Predict = (TextView) findViewById(R.id.textViewPredict);
+
                                 Predict.setText(text+" "+confidence*100+"%");
+
+
                             }
                         }
                     })
@@ -168,6 +214,8 @@ public class showPicAndML extends AppCompatActivity {
                     });
         } catch (FirebaseMLException e) {
             // ...
+
+
         }
         /////////////////////
 
