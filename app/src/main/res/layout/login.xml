@@ -24,7 +24,7 @@
 
             <ImageView
 
-                android:id="@+id/logo"
+                android:id="@+id/backbtn"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="15dp"
@@ -122,48 +122,11 @@
         android:background="@drawable/rounded_button">
 
     </androidx.appcompat.widget.AppCompatButton>
-    <LinearLayout
-        android:layout_marginTop="100dp"
-        android:layout_width="300dp"
-        android:layout_height="120dp"
-        android:layout_gravity="center"
-        >
-        <LinearLayout
-        android:layout_width="140dp"
-        android:layout_height="120dp"
-            android:gravity="right">
-            <ImageView
-                android:layout_marginRight="15dp"
-                android:layout_width="80dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/facebook_icon"
-                ></ImageView>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="20dp"
-            android:layout_height="120dp">
-                <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/vertical_line"></ImageView>
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="140dp"
-            android:layout_height="120dp">
-                <ImageView
-                    android:layout_marginLeft="15dp"
-                    android:layout_width="80dp"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/google_icon"></ImageView>
-
-
-        </LinearLayout>
 
 
 
-    </LinearLayout>
+
+
 
     <RelativeLayout
         android:layout_marginTop="20dp"

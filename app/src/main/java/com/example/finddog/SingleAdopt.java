@@ -18,6 +18,12 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.android.gms.maps.CameraUpdateFactory;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -32,6 +38,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+public class SingleAdopt extends AppCompatActivity implements View.OnClickListener, OnMapReadyCallback {
 
 public class SingleAdopt extends AppCompatActivity implements View.OnClickListener {
 
@@ -52,6 +59,8 @@ public class SingleAdopt extends AppCompatActivity implements View.OnClickListen
     private ImageView image;
     private TextView textTel;
     private TextView textOwner;
+    private  ImageView backButton;
+    private GoogleMap mMap;
 
     private EditText editTextComment;
     private Button buttonSendComment;
@@ -74,6 +83,9 @@ public class SingleAdopt extends AppCompatActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.single_adopt);
+        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
+                .findFragmentById(R.id.showmap);
+        mapFragment.getMapAsync(this);
 
         imgBtn = (Button) findViewById(R.id.commentBtn);
         imgShow = (ImageView) findViewById(R.id.commentPic);
@@ -106,6 +118,8 @@ public class SingleAdopt extends AppCompatActivity implements View.OnClickListen
         image = (ImageView) findViewById(R.id.imgShow);
         textTel = (TextView) findViewById(R.id.telOwner);
         textOwner = (TextView) findViewById(R.id.postOwner);
+        backButton = (ImageView) findViewById(R.id.backbtn);
+        backButton.setOnClickListener(this);
 
         storageReference = FirebaseStorage.getInstance().getReference();
 
@@ -118,6 +132,10 @@ public class SingleAdopt extends AppCompatActivity implements View.OnClickListen
 
 
         /*Toast.makeText(SingleAdopt.this,post_key,Toast.LENGTH_SHORT).show();*/
+    }
+        @Override
+        public void onMapReady(GoogleMap googleMap) {
+            mMap=googleMap;
 
         databaseReference.child(mPost_key).addValueEventListener(new ValueEventListener() {
             @Override
@@ -127,6 +145,8 @@ public class SingleAdopt extends AppCompatActivity implements View.OnClickListen
                 String post_breed =(String) dataSnapshot.child("breed").getValue();
                 String post_img =(String) dataSnapshot.child("image").getValue();
                 String uid = (String) dataSnapshot.child("uid") .getValue();
+                final Double latitude = dataSnapshot.child("Lat").getValue(Double.class);
+                final Double longitude = dataSnapshot.child("Lng").getValue(Double.class);
 
                 reff.child(uid).addValueEventListener(new ValueEventListener() {
                     @Override
@@ -135,7 +155,13 @@ public class SingleAdopt extends AppCompatActivity implements View.OnClickListen
                         String post_owner =(String) dataSnapshot.child("name").getValue();
                         textTel.setText(post_tel);
                         textOwner.setText(post_owner);
+
+                        LatLng location = new LatLng(latitude, longitude);
+
+                        mMap.addMarker((new MarkerOptions().position(location)));
+                        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(location, 14));
                     }
+
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -284,4 +310,11 @@ public class SingleAdopt extends AppCompatActivity implements View.OnClickListen
             }
             return randomStringBuilder.toString();
         }
+    @Override
+    public void onClick(View v) {
+
+        if(v==backButton){
+            finish();
+        }
+    }
 }
