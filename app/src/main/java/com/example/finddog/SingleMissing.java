@@ -116,8 +116,12 @@ public class SingleMissing extends FragmentActivity implements OnMapReadyCallbac
         mPost_key = getIntent().getExtras().getString("blog_id");
         reff = FirebaseDatabase.getInstance().getReference().child("user");
 
+        storageReference = FirebaseStorage.getInstance().getReference();
+
 
         firebaseAuth = FirebaseAuth.getInstance();
+
+        Un = FirebaseDatabase.getInstance().getReference();
 
         editTextComment = (EditText) findViewById(R.id.commentBox);
         buttonSendComment = (Button) findViewById(R.id.sendButton);
@@ -270,7 +274,7 @@ public class SingleMissing extends FragmentActivity implements OnMapReadyCallbac
 
                 if (imgUri!=null){
                 final StorageReference filepath = storageReference.child("MissingDogComment").child(random());
-                filepath.putFile(imgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    filepath.putFile(imgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                         filepath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {

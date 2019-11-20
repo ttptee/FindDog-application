@@ -40,7 +40,6 @@ import java.util.List;
 import java.util.Random;
 public class SingleAdopt extends AppCompatActivity implements View.OnClickListener, OnMapReadyCallback {
 
-public class SingleAdopt extends AppCompatActivity implements View.OnClickListener {
 
 
     public Uri imgUri;
@@ -59,7 +58,7 @@ public class SingleAdopt extends AppCompatActivity implements View.OnClickListen
     private ImageView image;
     private TextView textTel;
     private TextView textOwner;
-    private  ImageView backButton;
+    private ImageView backButton;
     private GoogleMap mMap;
 
     private EditText editTextComment;
@@ -76,7 +75,6 @@ public class SingleAdopt extends AppCompatActivity implements View.OnClickListen
 
     private Button imgBtn;
     private ImageView imgShow;
-
 
 
     @Override
@@ -124,35 +122,33 @@ public class SingleAdopt extends AppCompatActivity implements View.OnClickListen
         storageReference = FirebaseStorage.getInstance().getReference();
 
 
-
-
-
         loadComments();
 
 
 
         /*Toast.makeText(SingleAdopt.this,post_key,Toast.LENGTH_SHORT).show();*/
     }
-        @Override
-        public void onMapReady(GoogleMap googleMap) {
-            mMap=googleMap;
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
 
         databaseReference.child(mPost_key).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
-                String post_name =(String) dataSnapshot.child("name").getValue();
-                String post_breed =(String) dataSnapshot.child("breed").getValue();
-                String post_img =(String) dataSnapshot.child("image").getValue();
-                String uid = (String) dataSnapshot.child("uid") .getValue();
+                String post_name = (String) dataSnapshot.child("name").getValue();
+                String post_breed = (String) dataSnapshot.child("breed").getValue();
+                String post_img = (String) dataSnapshot.child("image").getValue();
+                String uid = (String) dataSnapshot.child("uid").getValue();
                 final Double latitude = dataSnapshot.child("Lat").getValue(Double.class);
                 final Double longitude = dataSnapshot.child("Lng").getValue(Double.class);
 
                 reff.child(uid).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                        String post_tel =(String) dataSnapshot.child("phone").getValue();
-                        String post_owner =(String) dataSnapshot.child("name").getValue();
+                        String post_tel = (String) dataSnapshot.child("phone").getValue();
+                        String post_owner = (String) dataSnapshot.child("name").getValue();
                         textTel.setText(post_tel);
                         textOwner.setText(post_owner);
 
@@ -228,10 +224,10 @@ public class SingleAdopt extends AppCompatActivity implements View.OnClickListen
         Un.child("user").child(path).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                final String userName =(String) dataSnapshot.child("name").getValue();
+                final String userName = (String) dataSnapshot.child("name").getValue();
 
 
-                if (imgUri!=null){
+                if (imgUri != null) {
                     final StorageReference filepath = storageReference.child("AdoptDogComment").child(random());
                     filepath.putFile(imgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                         @Override
@@ -250,15 +246,16 @@ public class SingleAdopt extends AppCompatActivity implements View.OnClickListen
                                 }
                             });
                         }
-                    });}else{
+                    });
+                } else {
 
                /* Calendar calendar = Calendar.getInstance();
                 String currentDate = DateFormat.getDateInstance().format(calendar.getTime());*/
 
-                DatabaseReference addComment = databaseReference.child(mPost_key).child("comment").push();
-                addComment.child("comment").setValue(comment);
-                addComment.child("uid").setValue(uid);
-                addComment.child("username").setValue(userName);
+                    DatabaseReference addComment = databaseReference.child(mPost_key).child("comment").push();
+                    addComment.child("comment").setValue(comment);
+                    addComment.child("uid").setValue(uid);
+                    addComment.child("username").setValue(userName);
                 }
 
             }
@@ -270,16 +267,35 @@ public class SingleAdopt extends AppCompatActivity implements View.OnClickListen
         });
 
 
-
-
     }
 
 
+    /*@Override
+    public void onClick(View v) {
+        if (v == buttonSendComment) {
+            *//*Toast.makeText(SingleMissing.this,"send by click",Toast.LENGTH_SHORT).show();*//*
+            sendComment();
+            *//*Toast.makeText(SingleMissing.this, "Add Complete", Toast.LENGTH_SHORT).show();*//*
+
+
+        }
+    }*/
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == GALLERY_REQUEST && resultCode == RESULT_OK) {
+
+            imgUri = data.getData();
+            imgShow.setImageURI(imgUri);
+
+        }
+    }
 
 
 
     @Override
     public void onClick(View v) {
+
         if (v == buttonSendComment) {
             /*Toast.makeText(SingleMissing.this,"send by click",Toast.LENGTH_SHORT).show();*/
             sendComment();
@@ -287,34 +303,20 @@ public class SingleAdopt extends AppCompatActivity implements View.OnClickListen
 
 
         }
-    }
 
-        protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-            super.onActivityResult(requestCode, resultCode, data);
-            if (requestCode == GALLERY_REQUEST && resultCode == RESULT_OK) {
-
-                imgUri = data.getData();
-                imgShow.setImageURI(imgUri);
-
-            }
-        }
-
-        public static String random() {
-            Random generator = new Random();
-            StringBuilder randomStringBuilder = new StringBuilder();
-            int randomLength = generator.nextInt(MAX_LENGTH);
-            char tempChar;
-            for (int i = 0; i < randomLength; i++) {
-                tempChar = (char) (generator.nextInt(96) + 32);
-                randomStringBuilder.append(tempChar);
-            }
-            return randomStringBuilder.toString();
-        }
-    @Override
-    public void onClick(View v) {
-
-        if(v==backButton){
+        if (v == backButton) {
             finish();
         }
+    }
+    public static String random() {
+        Random generator = new Random();
+        StringBuilder randomStringBuilder = new StringBuilder();
+        int randomLength = generator.nextInt(MAX_LENGTH);
+        char tempChar;
+        for (int i = 0; i < randomLength; i++) {
+            tempChar = (char) (generator.nextInt(96) + 32);
+            randomStringBuilder.append(tempChar);
+        }
+        return randomStringBuilder.toString();
     }
 }
