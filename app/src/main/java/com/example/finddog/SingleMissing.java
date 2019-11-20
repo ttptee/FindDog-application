@@ -57,7 +57,7 @@ public class SingleMissing extends AppCompatActivity implements View.OnClickList
 
     private FirebaseAuth firebaseAuth;
 
-    private final Object timestamp = ServerValue.TIMESTAMP;
+    /*private final Object timestamp = ServerValue.TIMESTAMP;*/
 
     RecyclerView recyclerView;
 

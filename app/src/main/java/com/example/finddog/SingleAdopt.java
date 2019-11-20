@@ -2,8 +2,13 @@ package com.example.finddog;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -17,12 +22,16 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.squareup.picasso.Picasso;
 
-public class SingleAdopt extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class SingleAdopt extends AppCompatActivity implements View.OnClickListener {
 
     private String mPost_key = null;
     private DatabaseReference databaseReference;
     private DatabaseReference reff;
 
+    private DatabaseReference Un;
 
     private TextView textName;
     private TextView textBreed;
@@ -30,22 +39,48 @@ public class SingleAdopt extends AppCompatActivity {
     private TextView textTel;
     private TextView textOwner;
 
+    private EditText editTextComment;
+    private Button buttonSendComment;
+
     FirebaseAuth firebaseAuth;
+
+    RecyclerView recyclerView;
+
+    List<ModelComment> commentLit;
+    AdapterComment adapterComment;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.single_adopt);
 
+        Un = FirebaseDatabase.getInstance().getReference();
+
+        firebaseAuth = FirebaseAuth.getInstance();
+
         databaseReference = FirebaseDatabase.getInstance().getReference().child("postadopt");
         mPost_key = getIntent().getExtras().getString("blog_id");
         reff = FirebaseDatabase.getInstance().getReference().child("user");
+
+        editTextComment = (EditText) findViewById(R.id.commentBox);
+        buttonSendComment = (Button) findViewById(R.id.sendButton);
+        recyclerView = findViewById(R.id.recycleViewComment);
+
+        buttonSendComment.setOnClickListener(this);
 
         textName = (TextView) findViewById(R.id.name);
         textBreed = (TextView) findViewById(R.id.breed);
         image = (ImageView) findViewById(R.id.imgShow);
         textTel = (TextView) findViewById(R.id.telOwner);
         textOwner = (TextView) findViewById(R.id.postOwner);
+
+
+
+
+
+        loadComments();
 
 
 
@@ -86,5 +121,90 @@ public class SingleAdopt extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void loadComments() {
+
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+
+        recyclerView.setLayoutManager(layoutManager);
+
+        commentLit = new ArrayList<>();
+
+        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("postadopt").child(mPost_key).child("comment");
+        ref.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                commentLit.clear();
+                for (DataSnapshot dss : dataSnapshot.getChildren()) {
+
+
+                    ModelComment modelComment = dss.getValue(ModelComment.class);
+
+                    commentLit.add(modelComment);
+
+                    adapterComment = new AdapterComment(getApplicationContext(), commentLit);
+
+                    recyclerView.setAdapter(adapterComment);
+
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+    }
+
+
+    private void sendComment() {
+
+        final String comment = editTextComment.getText().toString().trim();
+        final String uid = firebaseAuth.getCurrentUser().getUid();
+
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+        String path = currentUser.getUid();
+        Un.child("user").child(path).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                String userName =(String) dataSnapshot.child("name").getValue();
+
+               /* Calendar calendar = Calendar.getInstance();
+                String currentDate = DateFormat.getDateInstance().format(calendar.getTime());*/
+
+                DatabaseReference addComment = databaseReference.child(mPost_key).child("comment").push();
+                addComment.child("comment").setValue(comment);
+                addComment.child("uid").setValue(uid);
+                addComment.child("username").setValue(userName);
+
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+
+    }
+
+
+
+
+
+    @Override
+    public void onClick(View v) {
+        if (v == buttonSendComment) {
+            /*Toast.makeText(SingleMissing.this,"send by click",Toast.LENGTH_SHORT).show();*/
+            sendComment();
+            /*Toast.makeText(SingleMissing.this, "Add Complete", Toast.LENGTH_SHORT).show();*/
+
+
+        }
     }
 }
