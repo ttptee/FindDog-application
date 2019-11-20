@@ -286,6 +286,15 @@
                     android:hint="Enter comment..."
                     android:inputType="textCapSentences|textMultiLine"></EditText>
                 <Button
+                    android:id="@+id/commentBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.2"
+                    android:text="+"
+                    android:textSize="30dp"
+                    android:background="@null"></Button>
+                <Button
                     android:id="@+id/sendButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
@@ -297,6 +306,13 @@
 
 
             </LinearLayout>
+            <ImageView
+                android:id="@+id/commentPic"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center">
+
+            </ImageView>
 
 
 
