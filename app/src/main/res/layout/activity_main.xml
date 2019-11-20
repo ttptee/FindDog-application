@@ -160,7 +160,7 @@
             android:layout_weight="0.33"
             >
             <ImageView
-                android:id="@+id/gofindhome"
+                android:id="@+id/goadopt"
                 android:layout_width="100dp"
                 android:layout_height="match_parent"
                 android:src="@drawable/findhome_icon">
