@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.KeyEvent;
 import android.view.View;
@@ -17,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -26,21 +28,32 @@ import com.google.firebase.database.Exclude;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.squareup.picasso.Picasso;
 
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 public class SingleMissing extends AppCompatActivity implements View.OnClickListener {
+    private static final int MAX_LENGTH = 20;
     private String mPost_key = null;
     private DatabaseReference databaseReference;
     private DatabaseReference reff;
 
+    public Uri imgUri;
+
+    private static final int GALLERY_REQUEST = 1;
+
     private DatabaseReference Un;
+    private StorageReference storageReference;
 
     private TextView textName;
     private TextView textBreed;
@@ -64,6 +77,9 @@ public class SingleMissing extends AppCompatActivity implements View.OnClickList
     List<ModelComment> commentLit;
     AdapterComment adapterComment;
 
+    private Button imgBtn;
+    private ImageView imgShow;
+
 
 
     @Override
@@ -72,11 +88,23 @@ public class SingleMissing extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.single_missing);
 
 
+        imgBtn = (Button) findViewById(R.id.commentBtn);
+        imgShow = (ImageView) findViewById(R.id.commentPic);
+
+        imgBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent galleryIntent = new Intent(Intent.ACTION_GET_CONTENT);
+                galleryIntent.setType("image/*");
+                startActivityForResult(galleryIntent, GALLERY_REQUEST);
+            }
+        });
+
 
 
         Un = FirebaseDatabase.getInstance().getReference();
 
-
+        storageReference = FirebaseStorage.getInstance().getReference();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("postmiss");
         mPost_key = getIntent().getExtras().getString("blog_id");
         reff = FirebaseDatabase.getInstance().getReference().child("user");
@@ -199,7 +227,7 @@ public class SingleMissing extends AppCompatActivity implements View.OnClickList
                     recyclerView.setAdapter(adapterComment);
 
 
-                }
+                    }
                 }
 
             @Override
@@ -220,8 +248,30 @@ public class SingleMissing extends AppCompatActivity implements View.OnClickList
         Un.child("user").child(path).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                final String userName =(String) dataSnapshot.child("name").getValue();
 
-                String userName =(String) dataSnapshot.child("name").getValue();
+                if (imgUri!=null){
+                final StorageReference filepath = storageReference.child("MissingDogComment").child(random());
+                filepath.putFile(imgUri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                    @Override
+                    public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                        filepath.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                DatabaseReference addComment = databaseReference.child(mPost_key).child("comment").push();
+
+                                HashMap<String, String> hashMap = new HashMap<>();
+                                hashMap.put("image", String.valueOf(uri));
+                                addComment.child("image").setValue(hashMap.put("image", String.valueOf(uri)));
+                                addComment.child("comment").setValue(comment);
+                                addComment.child("uid").setValue(uid);
+                                addComment.child("username").setValue(userName);
+                            }
+                        });
+                    }
+                });}else{
+
+               /* String userName =(String) dataSnapshot.child("name").getValue();*/
 
                /* Calendar calendar = Calendar.getInstance();
                 String currentDate = DateFormat.getDateInstance().format(calendar.getTime());*/
@@ -229,7 +279,7 @@ public class SingleMissing extends AppCompatActivity implements View.OnClickList
                 DatabaseReference addComment = databaseReference.child(mPost_key).child("comment").push();
                 addComment.child("comment").setValue(comment);
                 addComment.child("uid").setValue(uid);
-                addComment.child("username").setValue(userName);
+                addComment.child("username").setValue(userName);}
 
             }
 
@@ -244,8 +294,29 @@ public class SingleMissing extends AppCompatActivity implements View.OnClickList
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == GALLERY_REQUEST && resultCode == RESULT_OK) {
+
+            imgUri = data.getData();
+            imgShow.setImageURI(imgUri);
+
+        }
+    }
 
 
+    public static String random() {
+        Random generator = new Random();
+        StringBuilder randomStringBuilder = new StringBuilder();
+        int randomLength = generator.nextInt(MAX_LENGTH);
+        char tempChar;
+        for (int i = 0; i < randomLength; i++) {
+            tempChar = (char) (generator.nextInt(96) + 32);
+            randomStringBuilder.append(tempChar);
+        }
+        return randomStringBuilder.toString();
+    }
 
 
     @Override

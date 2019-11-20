@@ -95,8 +95,8 @@
                     android:id="@+id/imgShow"
                     android:layout_width="300dp"
                     android:layout_height="200dp"
-                    android:background="@color/colorPrimaryDark"
-                    android:layout_gravity="center"></ImageView>
+                    android:layout_gravity="center"
+                    android:background="@color/colorPrimaryDark"></ImageView>
 
 
             </LinearLayout>
@@ -131,8 +131,8 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:textSize="15dp"
-                    android:padding="10dp"/>
+                    android:padding="10dp"
+                    android:textSize="15dp" />
 
 
             </LinearLayout>
@@ -166,8 +166,8 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:textSize="15dp"
-                    android:padding="10dp"/>
+                    android:padding="10dp"
+                    android:textSize="15dp" />
 
 
             </LinearLayout>
@@ -201,8 +201,8 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:textSize="15dp"
-                    android:padding="10dp"/>
+                    android:padding="10dp"
+                    android:textSize="15dp" />
 
 
             </LinearLayout>
@@ -236,8 +236,8 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="datetime"
-                    android:textSize="15dp"
-                    android:padding="10dp"/>
+                    android:padding="10dp"
+                    android:textSize="15dp" />
 
 
             </LinearLayout>
@@ -303,8 +303,8 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="number"
-                    android:textSize="15dp"
-                    android:padding="10dp"/>
+                    android:padding="10dp"
+                    android:textSize="15dp" />
 
 
             </LinearLayout>
@@ -338,8 +338,8 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:textSize="15dp"
-                    android:padding="10dp"/>
+                    android:padding="10dp"
+                    android:textSize="15dp" />
 
 
             </LinearLayout>
@@ -373,13 +373,11 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:textSize="15dp"
-                    android:padding="10dp"/>
+                    android:padding="10dp"
+                    android:textSize="15dp" />
 
 
             </LinearLayout>
-
-
 
 
             <LinearLayout
@@ -392,8 +390,7 @@
 
                 <LinearLayout
                     android:layout_width="140dp"
-                    android:layout_height="match_parent"
-                    >
+                    android:layout_height="match_parent">
 
                     <TextView
                         android:layout_width="match_parent"
@@ -423,9 +420,10 @@
                 <ImageView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:layout_weight="0.2"
-                    android:src="@drawable/usericon"
-                    android:layout_gravity="center"></ImageView>
+                    android:src="@drawable/usericon"></ImageView>
+
                 <EditText
                     android:id="@+id/commentBox"
                     android:layout_width="0dp"
@@ -434,17 +432,33 @@
                     android:hint="Enter comment..."
                     android:inputType="textCapSentences|textMultiLine"></EditText>
                 <Button
+                    android:id="@+id/commentBtn"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="0.2"
+                    android:text="+"
+                    android:textSize="30dp"
+                    android:background="@null"></Button>
+                <Button
                     android:id="@+id/sendButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_weight="0.2"
-                    android:hint="send"
                     android:layout_gravity="center"
-                    android:background="@drawable/rounded_button"></Button>
-
+                    android:layout_weight="0.2"
+                    android:background="@drawable/rounded_button"
+                    android:hint="send"></Button>
 
 
             </LinearLayout>
+
+            <ImageView
+                android:id="@+id/commentPic"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center">
+
+            </ImageView>
 
 
         </LinearLayout>

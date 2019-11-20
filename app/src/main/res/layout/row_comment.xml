@@ -17,6 +17,21 @@
             android:src="@drawable/usericon"
             android:layout_marginHorizontal="20dp"
             android:layout_marginVertical="5dp"></ImageView>
+
+        <ImageView
+            android:visibility="visible"
+            android:id="@+id/commentPhoto"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_below="@+id/comment"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="122dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="122dp">
+
+        </ImageView>
+
         <TextView
             android:id="@+id/namee"
             android:layout_width="match_parent"
