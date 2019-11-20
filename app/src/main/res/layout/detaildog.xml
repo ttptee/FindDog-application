@@ -29,12 +29,12 @@
 
             <ImageView
 
-                android:id="@+id/logo"
+                android:id="@+id/backbtn"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:src="@drawable/doglogo"
+                android:src="@drawable/back"
                 tools:layout_editor_absoluteX="14dp"
 
                 tools:layout_editor_absoluteY="170dp" />
@@ -50,15 +50,7 @@
             >
 
 
-            <ImageView
-                android:id="@+id/loginbar"
-                android:layout_width="wrap_content"
 
-                android:layout_height="match_parent"
-                android:layout_marginEnd="15dp"
-                android:src="@drawable/login_icon">
-
-            </ImageView>
 
         </LinearLayout>
 
@@ -192,40 +184,6 @@
                     android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:textSize="15dp" />
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="300dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="10dp"
-
-                >
-
-                <LinearLayout
-                    android:layout_width="190dp"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="10dp"
-                        android:text="วัน เวลาที่พบเห็นครั้งสุดท้าย"
-                        android:textAlignment="center">
-
-                    </TextView>
-                </LinearLayout>
-
-                <EditText
-                    android:id="@+id/datetime"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:ems="10"
-                    android:inputType="datetime"
                     android:textSize="15dp" />
 
 

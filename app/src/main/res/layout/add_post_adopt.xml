@@ -28,12 +28,12 @@
 
             <ImageView
 
-                android:id="@+id/logo"
+                android:id="@+id/backbtn"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"
-                android:src="@drawable/doglogo"
+                android:src="@drawable/back"
                 tools:layout_editor_absoluteX="14dp"
 
                 tools:layout_editor_absoluteY="170dp" />
@@ -161,40 +161,28 @@
 
 
             </LinearLayout>
-
-
-
-            <LinearLayout
+            <SearchView
+                android:id="@+id/search"
+                android:name="com.google.android.gms.location.places.ui.PlaceAutocompleteFragment"
                 android:layout_width="300dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginTop="10dp"
+                android:background="#FFFFFF"
+                android:elevation="5dp"
+                android:iconifiedByDefault="false"
+                android:queryHint="Search a place" ></SearchView>
 
-                >
+            <fragment xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/mmap"
+                android:name="com.google.android.gms.maps.SupportMapFragment"
+                android:layout_width="300dp"
+                android:layout_height="200dp"
+                android:layout_marginLeft="50dp"
+                tools:context="com.example.finddog.detaildogJava">
 
-                <LinearLayout
-                    android:layout_width="115dp"
-                    android:layout_height="match_parent">
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="10dp"
-                        android:text="สถานที่น้องหมา"
-                        android:textAlignment="center">
-
-                    </TextView>
-                </LinearLayout>
-
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_marginTop="15dp">
-
-            </LinearLayout>
+            </fragment>
 
 
 

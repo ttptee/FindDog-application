@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,7 +24,7 @@ public class loginJ extends AppCompatActivity implements View.OnClickListener {
     private Button loginButton;
     private EditText emailLogin;
     private EditText passwordLogin;
-
+    private ImageView backButton;
 
     private FirebaseAuth firebaseAuth;
     private ProgressDialog progressDialog;
@@ -52,10 +53,12 @@ public class loginJ extends AppCompatActivity implements View.OnClickListener {
         emailLogin = (EditText) findViewById(R.id.emaillogin);
         passwordLogin = (EditText) findViewById(R.id.passwordlogin);
         loginButton  = (Button) findViewById(R.id.loginbtn);
+        backButton= (ImageView) findViewById(R.id.backbtn);
 
         progressDialog = new ProgressDialog(this);
 
         loginButton.setOnClickListener(this);
+        backButton.setOnClickListener(this);
 
     }
 
@@ -94,6 +97,9 @@ public class loginJ extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View v) {
         if(v == loginButton){
             userLogin();
+        }
+        if(v==backButton){
+            finish();
         }
     }
 }

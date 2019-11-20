@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentActivity;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,7 +24,7 @@ import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.database.annotations.NotNull;
 import com.squareup.picasso.Picasso;
 
-public class SingleMissing extends FragmentActivity implements OnMapReadyCallback  {
+public class SingleMissing extends FragmentActivity implements OnMapReadyCallback, View.OnClickListener {
     private String mPost_key = null;
     private DatabaseReference databaseReference;
     private DatabaseReference reff;
@@ -31,12 +32,12 @@ public class SingleMissing extends FragmentActivity implements OnMapReadyCallbac
     private TextView textName;
     private TextView textBreed;
     private TextView textSpecial;
-    private TextView textDatetime;
     private TextView textPrize;
     private TextView textTel;
     private TextView textOwner;
     private ImageView image;
     private GoogleMap mMap;
+    private  ImageView backButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,11 +55,12 @@ public class SingleMissing extends FragmentActivity implements OnMapReadyCallbac
         textName = (TextView) findViewById(R.id.name);
         textBreed = (TextView) findViewById(R.id.breed);
         textSpecial = (TextView) findViewById(R.id.special);
-        textDatetime = (TextView) findViewById(R.id.datetime);
         textPrize = (TextView) findViewById(R.id.prize);
         textTel = (TextView) findViewById(R.id.telOwner);
         textOwner = (TextView) findViewById(R.id.postOwner);
         image = (ImageView) findViewById(R.id.imgShow);
+        backButton = (ImageView) findViewById(R.id.backbtn);
+        backButton.setOnClickListener(this);
 
         /*Toast.makeText(SingleMissing.this,mPost_key,Toast.LENGTH_SHORT).show();*/
     }
@@ -72,7 +74,6 @@ public class SingleMissing extends FragmentActivity implements OnMapReadyCallbac
                 String post_name =(String) dataSnapshot.child("name").getValue();
                 String post_breed =(String) dataSnapshot.child("breed").getValue();
                 String post_special =(String) dataSnapshot.child("special").getValue();
-                String post_datetime =(String) dataSnapshot.child("datetime").getValue();
                 String post_prize =(String) dataSnapshot.child("prize").getValue();
                 String uid =(String) dataSnapshot.child("uid").getValue();
                 final Double latitude = dataSnapshot.child("Lat").getValue(Double.class);
@@ -107,7 +108,7 @@ public class SingleMissing extends FragmentActivity implements OnMapReadyCallbac
                 textName.setText(post_name);
                 textBreed.setText(post_breed);
                 textSpecial.setText(post_special);
-                textDatetime.setText(post_datetime);
+
                 textPrize.setText(post_prize);
 
                 Picasso.get().load(post_img).into(image);
@@ -120,6 +121,13 @@ public class SingleMissing extends FragmentActivity implements OnMapReadyCallbac
 
 
             });
+    }
+    @Override
+    public void onClick(View v) {
+
+        if(v==backButton){
+            finish();
+        }
     }
     }
 

@@ -51,6 +51,15 @@ public class allAdoptPost extends AppCompatActivity {
         searchBreed = (EditText)findViewById(R.id.searchbreed);
         arrayList = new ArrayList<>();
 
+        ImageView logogo = findViewById(R.id.logo);
+        logogo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(allAdoptPost.this, MainActivity.class);
+                startActivity(i);
+            }
+        });
+
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("postadopt");
 
