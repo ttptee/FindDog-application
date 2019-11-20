@@ -12,7 +12,7 @@
         android:layout_width="68dp"
         android:layout_height="26dp"
         android:layout_marginTop="64dp"
-        android:text="TextView"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.104"
         app:layout_constraintStart_toStartOf="parent"
