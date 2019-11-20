@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -33,9 +34,12 @@ public class allAdoptPost extends AppCompatActivity {
     private RecyclerView missingList;
 
     private DatabaseReference databaseReference;
+    private DatabaseReference databaseReferencee;
 
     private FirebaseRecyclerOptions<MissingBlog> options;
     private FirebaseRecyclerAdapter<MissingBlog, ViewHolder> adapter;
+
+    private ImageButton searchButton;
 
     EditText searchBreed;
     ArrayList<MissingBlog> arrayList;
@@ -51,8 +55,20 @@ public class allAdoptPost extends AppCompatActivity {
         searchBreed = (EditText)findViewById(R.id.searchbreed);
         arrayList = new ArrayList<>();
 
+        searchButton = (ImageButton) findViewById(R.id.searchBtn);
+
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*adapter.stopListening();*/
+                /*String searchText = searchBreed.getText().toString();
+                firebaseSearch(searchText);*/
+            }
+        });
+
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("postadopt");
+        databaseReferencee = FirebaseDatabase.getInstance().getReference("postadopt");
 
         searchBreed.addTextChangedListener(new TextWatcher() {
             @Override
@@ -79,7 +95,6 @@ public class allAdoptPost extends AppCompatActivity {
 
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 1);
         missingList.setLayoutManager(gridLayoutManager);
-
 
 
 
@@ -125,7 +140,7 @@ public class allAdoptPost extends AppCompatActivity {
             }
         };
 
-        /*GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 1);
+       /* GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 1);
         missingList.setLayoutManager(gridLayoutManager);*/
         adapter.startListening();
         missingList.setAdapter(adapter);
@@ -147,6 +162,52 @@ public class allAdoptPost extends AppCompatActivity {
         });
     }
 
+    private void firebaseSearch(String s) {
+
+        Toast.makeText(allAdoptPost.this,"hi "+s,Toast.LENGTH_LONG).show();
+
+        Query firebaseSearchQuery = databaseReference.orderByChild("breed")
+                .startAt(s)
+                .endAt(s+"\uf8ff");
+        options = new FirebaseRecyclerOptions.Builder<MissingBlog>()
+                .setQuery(firebaseSearchQuery, MissingBlog.class).build();
+
+        adapter = new FirebaseRecyclerAdapter<MissingBlog, ViewHolder>(options) {
+            @Override
+            protected void onBindViewHolder(ViewHolder viewHolder, int i, MissingBlog missingBlog) {
+                Picasso.get().load(missingBlog.getImage()).into(viewHolder.postImg);
+
+                viewHolder.postName.setText(missingBlog.getName());
+                viewHolder.postBreed.setText(missingBlog.getBreed());
+
+
+                final String post_key = getRef(i).getKey();
+                viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        Intent singleAdoptPage = new Intent(allAdoptPost.this,SingleAdopt.class);
+                        singleAdoptPage.putExtra("blog_id",post_key);
+                        startActivity(singleAdoptPage);
+                    }
+                });adapter.startListening();
+                missingList.setAdapter(adapter);
+
+
+
+            }
+
+            @NonNull
+            @Override
+            public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.blog_row,parent,false);
+
+                return new ViewHolder(view);
+            }
+        };
+
+    }
+
     private void search(String s) {
         Query query = databaseReference.orderByChild("breed")
                 .startAt(s)
@@ -166,11 +227,11 @@ public class allAdoptPost extends AppCompatActivity {
                         MyAdapter.MyAdapterViewHolder.class.getClass();
 
 
-                        if (dss.getKey()!=null){
+                        /*if (dss.getKey()!=null){
                         //final String pos_key = dss.getKey();
                         Intent singleAdoptPage = new Intent(allAdoptPost.this,SingleAdopt.class);
                         singleAdoptPage.putExtra("blog_id",pos_key);
-                        startActivity(singleAdoptPage);}
+                        startActivity(singleAdoptPage);}*/
                     }
 
                     MyAdapter myAdapter = new MyAdapter(getApplicationContext(),arrayList);
@@ -187,6 +248,9 @@ public class allAdoptPost extends AppCompatActivity {
         });
 
     }
+
+
+
 
     @Override
     protected void onStart() {
