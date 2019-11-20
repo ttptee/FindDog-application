@@ -30,8 +30,9 @@ import android.widget.TextView;
 
 import android.util.Log;
 
+
 public class checkPostBreed extends Activity implements LocationListener {
-    private TextView textView;
+    public TextView textView;
     private LocationManager locationManager;
 
     @Override
@@ -47,10 +48,11 @@ public class checkPostBreed extends Activity implements LocationListener {
         testBreed.setText(TextBreed);
 
         textView = (TextView) findViewById(R.id.Lat);
+
         locationManager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        if (ActivityCompat.checkSelfPermission(checkPostBreed.this,Manifest.permission.ACCESS_FINE_LOCATION)
+        if (ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_FINE_LOCATION)
         != PackageManager.PERMISSION_GRANTED &&
-         ActivityCompat.checkSelfPermission(checkPostBreed.this,Manifest.permission.ACCESS_COARSE_LOCATION)
+         ActivityCompat.checkSelfPermission(this,Manifest.permission.ACCESS_COARSE_LOCATION)
                  != PackageManager.PERMISSION_GRANTED) {
             // TODO: Consider calling
             //    Activity#requestPermissions
@@ -61,6 +63,7 @@ public class checkPostBreed extends Activity implements LocationListener {
             // for Activity#requestPermissions for more details.
             return;
         }
+
         Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
         onLocationChanged(location);
 
@@ -70,7 +73,9 @@ public class checkPostBreed extends Activity implements LocationListener {
     public void onLocationChanged(Location location) {
         double longitude=location.getLongitude();
         double latitude = location.getLatitude();
-        textView.setText("longitude"+longitude+"\n"+"latitude"+latitude);
+        textView.setText("Long"+longitude+"\n"+"Lat"+latitude);
+
+
     }
 
     @Override
