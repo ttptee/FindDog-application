@@ -9,6 +9,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,11 +22,12 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 
-public class registerJ extends Activity {
-    private EditText emailTV, passwordTV;
+public class registerJ extends Activity implements View.OnClickListener {
+    private EditText emailTV, passwordTV,confirmpasswordTV;
     private Button registerbtn;
     private ProgressDialog progressDialog;
     private FirebaseAuth firebaseAuth;
+    private ImageView backButton;
 
     private FirebaseAuth mAuth;
     @SuppressLint("CutPasteId")
@@ -36,21 +38,34 @@ public class registerJ extends Activity {
         registerbtn = (Button) findViewById(R.id.registerbtn) ;
         emailTV = (EditText) findViewById(R.id.email);
         passwordTV = (EditText) findViewById(R.id.password) ;
+        confirmpasswordTV = (EditText) findViewById(R.id.confirmpassword) ;
        progressDialog = new ProgressDialog(this);
        firebaseAuth = FirebaseAuth.getInstance();
+       backButton=(ImageView) findViewById(R.id.backbtn);
+        backButton.setOnClickListener(this);
+        registerbtn.setOnClickListener(this);
 
 
 
 
-        registerbtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+//
+//        registerbtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//
+//                    registerUser();
+//
+//
+//            }
+//        });
+//
+//        backButton.setOnClickListener((new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                finish();
+//            }
+//        }));
 
-                    registerUser();
-
-
-            }
-        });
     }
 private void registerUser(){
         String email = emailTV.getText().toString().trim();
@@ -63,8 +78,8 @@ private void registerUser(){
             Toast.makeText(this,"please Enter Password",Toast.LENGTH_SHORT).show();
             return;
         }
-        progressDialog.setMessage("Registering User...");
-        progressDialog.show();
+        validate();
+
         firebaseAuth.createUserWithEmailAndPassword(email,password)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -86,7 +101,36 @@ private void registerUser(){
 
 }
 
+    private boolean validate() {
+        boolean temp=true;
+        String pass=passwordTV.getText().toString();
+        String cpass=confirmpasswordTV.getText().toString();
+        if(!pass.equals(cpass)){
+            Toast.makeText(registerJ.this,"Password Not matching",Toast.LENGTH_SHORT).show();
+            temp=false;
+            finish();
+            startActivity(new Intent(getApplicationContext(), registerJ.class));
+        }
+        return temp;
+    }
+
+
+
+
+    public void onClick(View v) {
+        if (v == registerbtn) {
+            registerUser();
+        }
+        if(v==backButton){
+            finish();
+
+        }
+    }
+
+
 }
+
+
 
 
 

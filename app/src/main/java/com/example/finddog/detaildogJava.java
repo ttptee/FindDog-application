@@ -9,11 +9,13 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -90,6 +92,8 @@ public class detaildogJava extends AppCompatActivity implements View.OnClickList
     private static final String KEY_LOCATION = "location";
     public LatLng pointll;
     public String textMLbreed;
+    private ImageView backButton;
+    Button b;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -132,14 +136,15 @@ public class detaildogJava extends AppCompatActivity implements View.OnClickList
         editTextName = (EditText) findViewById(R.id.name);
         editTextBreed = (EditText) findViewById(R.id.breed);
         editTextSpecial = (EditText) findViewById(R.id.special);
-        editTextDateTime = (EditText) findViewById(R.id.datetime);
         editTextPrize = (EditText) findViewById(R.id.prize);
         buttonSaveDetail = (Button) findViewById(R.id.detaildogsubmit);
+        backButton= (ImageView) findViewById(R.id.backbtn);
 
 
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
         buttonSaveDetail.setOnClickListener(this);
+        backButton.setOnClickListener(this);
 
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
@@ -223,12 +228,12 @@ public class detaildogJava extends AppCompatActivity implements View.OnClickList
         final String name = editTextName.getText().toString().trim();
         final String breed = editTextBreed.getText().toString().trim();
         final String special = editTextSpecial.getText().toString().trim();
-        final String datetime = editTextDateTime.getText().toString().trim();
         final String prize = editTextPrize.getText().toString().trim();
         final String uid = firebaseAuth.getCurrentUser().getUid();
         final double latitude = pointll.latitude;
         final double longitude = pointll.longitude;
         final String breedML = textMLbreed;
+        b = (Button) findViewById(R.id.detaildogsubmit);
 
 
         final StorageReference filepath = storageReference.child("MissingDogImg").child(random());
@@ -250,7 +255,6 @@ public class detaildogJava extends AppCompatActivity implements View.OnClickList
                         newPost.child("breed").setValue(breed);
                         newPost.child("breedML").setValue(breedML);
                         newPost.child("special").setValue(special);
-                        newPost.child("datetime").setValue(datetime);
                         newPost.child("prize").setValue(prize);
                         newPost.child("uid").setValue(uid);
                         newPost.child("Lat").setValue(latitude);
@@ -271,11 +275,26 @@ public class detaildogJava extends AppCompatActivity implements View.OnClickList
     @Override
     public void onClick(View v) {
         if (v == buttonSaveDetail) {
+            if ((TextUtils.isEmpty(editTextName.getText()))
+                    || (TextUtils.isEmpty(editTextBreed.getText()))
+                    || (TextUtils.isEmpty(editTextPrize.getText()))
+                    || (TextUtils.isEmpty(editTextSpecial.getText())
+                    )
+            ) {
+                Toast.makeText(this, "Please Complete All Fields", Toast.LENGTH_SHORT).show();
+                /*b.setEnabled(false);*/
+                /*finish();*/
+            }
+            else{
             Toast.makeText(this, "Adding", Toast.LENGTH_SHORT).show();
             saveDetail();
             Toast.makeText(this, "Add Complete", Toast.LENGTH_SHORT).show();
             finish();
-            startActivity(new Intent(this, AllMissingPost.class));
+            startActivity(new Intent(this, AllMissingPost.class));}
+        }
+        if(v==backButton){
+            finish();
+
         }
     }
 

@@ -85,12 +85,16 @@
                 android:text="หมาหาย"
                 android:textSize="20sp"></TextView>
 
-            <ImageView
+
+            <ViewFlipper
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
-                android:src="@drawable/dogimage">
+                android:id="@+id/viewFlipper_slide_show"
+                android:layout_centerHorizontal="true">
 
-            </ImageView>
+
+            </ViewFlipper>
+
 
         </LinearLayout>
 
@@ -108,12 +112,13 @@
 
             </TextView>
 
-            <ImageView
+            <ViewFlipper
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:src="@drawable/findhomedogimageex">
+                android:layout_height="180dp"
+                android:id="@+id/viewFlipper_slide_show2"
+                android:layout_centerHorizontal="true">
 
-            </ImageView>
+            </ViewFlipper>
         </LinearLayout>
 
 
