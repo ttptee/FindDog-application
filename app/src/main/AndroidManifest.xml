@@ -14,7 +14,6 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
         <activity android:name=".SingleAdopt"></activity>
         <activity android:name=".SingleMissing" />
         <activity android:name=".viewProfile" />
@@ -23,10 +22,18 @@
         <activity android:name=".editProfileJ" />
         android:theme="@style/AppTheme"
       >
+        android:theme="@style/AppTheme">
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="label" />
+        <activity android:name=".checkPostBreed"></activity>
         <activity android:name=".profileJ" />
+        <activity android:name=".SingleAdopt"></activity>
+        <activity android:name=".SingleMissing" />
+        <activity android:name=".viewProfile" />
+        <activity android:name=".addPostAdopt" />
+        <activity android:name=".allAdoptPost" />
+        <activity android:name=".editProfileJ" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -39,9 +46,10 @@
         <activity android:name=".detaildogJava" />
         <activity android:name=".showPicAndML" />
         <activity android:name=".AllMissingPost" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyDNERQwxMMdmzi8oI2WvSku_bOKjX2nm4A"/>
+            android:value="AIzaSyDNERQwxMMdmzi8oI2WvSku_bOKjX2nm4A" />
     </application>
 
 </manifest>

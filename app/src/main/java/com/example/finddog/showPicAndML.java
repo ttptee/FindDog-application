@@ -8,19 +8,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
+
+import android.graphics.drawable.Drawable;
 import android.hardware.camera2.CameraAccessException;
 import android.hardware.camera2.CameraCharacteristics;
 import android.hardware.camera2.CameraManager;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.util.SparseIntArray;
 import android.view.Surface;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -45,6 +51,8 @@ import java.util.List;
 
 public class showPicAndML extends AppCompatActivity {
     private static final String TAG = "ODAutoMLILProcessor";
+    public EditText inputBreedEdittext;
+    public String text;
     ImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,6 +77,26 @@ public class showPicAndML extends AppCompatActivity {
                 intentGoGal.setType("image/*");
                 startActivityForResult(Intent.createChooser(intentGoGal
                         , "Select photo from"), 1);
+            }
+        });
+        Button goCheckpostandBreedbtn = findViewById(R.id.submitBreed);
+        goCheckpostandBreedbtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intentGOcheckpage = new Intent(showPicAndML.this,checkPostBreed.class);
+                inputBreedEdittext =findViewById(R.id.inputBreed);
+                String BreedEdittext = inputBreedEdittext.getText().toString().trim();
+                SharedPreferences sp = getSharedPreferences("BreedText", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sp.edit();
+                if (BreedEdittext.isEmpty()){
+                editor.putString("BreedMLText",text);
+                editor.commit();}
+                else {
+                    editor.putString("BreedMLText",BreedEdittext);
+                    editor.commit();
+                }
+
+                startActivity(intentGOcheckpage);
             }
         });
     }
@@ -173,7 +201,7 @@ public void onActivityResult(int requestCode, int resultCode
                 .setAssetFilePath("AutoML/manifest.json")
                 .build();
         // [START image_from_bitmap]
-        FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(bitmap);
+        final FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(bitmap);
         // [END image_from_bitmap]
         FirebaseVisionImageLabeler labeler;
         try {
@@ -191,12 +219,19 @@ public void onActivityResult(int requestCode, int resultCode
                             // Task completed successfully
                             // ...
                             for (FirebaseVisionImageLabel label: labels) {
-                                String text = label.getText();
+                                 text = label.getText();
                                 String text2 = label.getEntityId();
                                 float confidence = label.getConfidence();
                                 TextView Predict = (TextView) findViewById(R.id.textViewPredict);
 
+
+
                                 Predict.setText(text+" "+confidence*100+"%");
+
+
+
+
+
 
 
                             }
@@ -220,6 +255,7 @@ public void onActivityResult(int requestCode, int resultCode
         /////////////////////
 
     }
+
 
 }
 
