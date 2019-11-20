@@ -93,6 +93,7 @@ public class addPostAdopt extends Activity implements View.OnClickListener {
             imgUri = data.getData();
             selectImage.setImageURI(imgUri);
 
+
         }
     }
 
