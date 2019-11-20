@@ -85,6 +85,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         });
+        imgGoFind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent e = new Intent(MainActivity.this, showPicAndML.class);
+                startActivity(e);
+            }
+        });
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("postmiss");
         databaseReference2 = FirebaseDatabase.getInstance().getReference().child("postadopt");
@@ -170,6 +177,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
 
     public void flipImages(String image) {
         ImageView imageView = new ImageView(this);
