@@ -2,12 +2,14 @@ package com.example.finddog;
 
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -15,6 +17,7 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
@@ -26,12 +29,20 @@ import com.google.android.gms.maps.model.CameraPosition;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.ml.common.FirebaseMLException;
+import com.google.firebase.ml.vision.FirebaseVision;
+import com.google.firebase.ml.vision.automl.FirebaseAutoMLLocalModel;
+import com.google.firebase.ml.vision.common.FirebaseVisionImage;
+import com.google.firebase.ml.vision.label.FirebaseVisionImageLabel;
+import com.google.firebase.ml.vision.label.FirebaseVisionImageLabeler;
+import com.google.firebase.ml.vision.label.FirebaseVisionOnDeviceAutoMLImageLabelerOptions;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -80,6 +91,7 @@ public class detaildogJava extends AppCompatActivity implements View.OnClickList
     private static final String KEY_CAMERA_POSITION = "camera_position";
     private static final String KEY_LOCATION = "location";
     public LatLng pointll;
+    public String textMLbreed;
     private ImageView backButton;
     Button b;
 
@@ -188,6 +200,14 @@ public class detaildogJava extends AppCompatActivity implements View.OnClickList
 
             imgUri = data.getData();
             selectImage.setImageURI(imgUri);
+            Bitmap bitmap = null;
+            try {
+                bitmap = MediaStore.Images.Media.getBitmap(detaildogJava.this.getContentResolver(), imgUri);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            selectImage.setImageBitmap(bitmap);
+            imageFromBitmap(bitmap);
 
         }
     }
@@ -212,6 +232,7 @@ public class detaildogJava extends AppCompatActivity implements View.OnClickList
         final String uid = firebaseAuth.getCurrentUser().getUid();
         final double latitude = pointll.latitude;
         final double longitude = pointll.longitude;
+        final String breedML = textMLbreed;
         b = (Button) findViewById(R.id.detaildogsubmit);
 
 
@@ -232,6 +253,7 @@ public class detaildogJava extends AppCompatActivity implements View.OnClickList
                         newPost.child("image").setValue(hashMap.put("image", String.valueOf(uri)));
                         newPost.child("name").setValue(name);
                         newPost.child("breed").setValue(breed);
+                        newPost.child("breedML").setValue(breedML);
                         newPost.child("special").setValue(special);
                         newPost.child("prize").setValue(prize);
                         newPost.child("uid").setValue(uid);
@@ -401,24 +423,59 @@ public class detaildogJava extends AppCompatActivity implements View.OnClickList
 
 
     }
+    private void imageFromBitmap(Bitmap bitmap) {
+        FirebaseAutoMLLocalModel localModel = new FirebaseAutoMLLocalModel.Builder()
+                .setAssetFilePath("AutoML/manifest.json")
+                .build();
+        // [START image_from_bitmap]
+        FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(bitmap);
+        // [END image_from_bitmap]
+        FirebaseVisionImageLabeler labeler;
+        try {
+            FirebaseVisionOnDeviceAutoMLImageLabelerOptions options =
+                    new FirebaseVisionOnDeviceAutoMLImageLabelerOptions.Builder(localModel)
+                            .setConfidenceThreshold(0.5f)  // Evaluate your model in the Firebase console
+                            // to determine an appropriate value.
+                            .build();
+            labeler = FirebaseVision.getInstance().getOnDeviceAutoMLImageLabeler(options);
 
-    /*private void checkValidation() {
+            labeler.processImage(image)
+                    .addOnSuccessListener(new OnSuccessListener<List<FirebaseVisionImageLabel>>() {
+                        @Override
+                        public void onSuccess(List<FirebaseVisionImageLabel> labels) {
+                            // Task completed successfully
+                            // ...
+                            for (FirebaseVisionImageLabel label: labels) {
+                                 textMLbreed = label.getText();
+                                String text2 = label.getEntityId();
+                                float confidence = label.getConfidence();
+                                TextView Predict = (TextView) findViewById(R.id.textViewPredict);
 
-        if ((TextUtils.isEmpty(editTextName.getText()))
-                || (TextUtils.isEmpty(editTextDateTime.getText()))
-                || (TextUtils.isEmpty(editTextBreed.getText()))
-                || (TextUtils.isEmpty(editTextPrize.getText()))
-                || (TextUtils.isEmpty(editTextSpecial.getText())
-        )
-        ) {
-            Toast.makeText(this, "Please Complete All Fields", Toast.LENGTH_SHORT).show();
-            b.setEnabled(false);
+
+
+
+
+
+                            }
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            // Task failed with an exception
+                            // ...
+                            TextView Predict = (TextView) findViewById(R.id.textViewPredict);
+                            Predict.setText("Predict failed pls try again");
+
+                        }
+                    });
+        } catch (FirebaseMLException e) {
+            // ...
+
+
         }
+        /////////////////////
 
-        else{
-            b.setEnabled(true);
-        }
-
-    }*/
+    }
 
 }

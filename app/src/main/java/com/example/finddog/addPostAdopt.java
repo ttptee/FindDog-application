@@ -185,6 +185,7 @@ public class addPostAdopt extends AppCompatActivity implements View.OnClickListe
             imgUri = data.getData();
             selectImage.setImageURI(imgUri);
 
+
         }
     }
 
