@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -21,11 +23,14 @@ public class SingleAdopt extends AppCompatActivity {
     private DatabaseReference databaseReference;
     private DatabaseReference reff;
 
+
     private TextView textName;
     private TextView textBreed;
     private ImageView image;
     private TextView textTel;
     private TextView textOwner;
+
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +46,8 @@ public class SingleAdopt extends AppCompatActivity {
         image = (ImageView) findViewById(R.id.imgShow);
         textTel = (TextView) findViewById(R.id.telOwner);
         textOwner = (TextView) findViewById(R.id.postOwner);
+
+
 
         /*Toast.makeText(SingleAdopt.this,post_key,Toast.LENGTH_SHORT).show();*/
 
