@@ -11,32 +11,31 @@
         android:id="@+id/Lat"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="64dp"
+        android:layout_marginLeft="20dp"
         android:text=""
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.104"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/Lng"
-        android:layout_width="68dp"
-        android:layout_height="26dp"
-        android:layout_marginTop="124dp"
-        android:text="TextView"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.104"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/BreedText"
-        android:layout_width="68dp"
-        android:layout_height="26dp"
-        android:layout_marginTop="192dp"
+        android:layout_width="134dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="76dp"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.104"
+        app:layout_constraintHorizontal_bias="0.851"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ShowSumBreed"
+        android:layout_width="413dp"
+        android:layout_height="208dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Lat"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/Lat"
+        app:layout_constraintVertical_bias="0.115" />
 </androidx.constraintlayout.widget.ConstraintLayout>
