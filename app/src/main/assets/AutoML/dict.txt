@@ -3,7 +3,9 @@ GermanShepherd
 LabradorRetriever
 ShihTzu
 Siberianhusky
+bangkaew
 beagle
 bulldog
 goldenRetriever
+pug
 shiba

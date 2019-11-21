@@ -99,7 +99,8 @@ public class checkPostBreed extends Activity implements LocationListener {
         listSum = new ArrayList<>();
 
         final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("postmiss");
-        ref.orderByChild("Lat").startAt(latitude-0.007).endAt(latitude+0.007).addValueEventListener(new ValueEventListener() {
+        ref.orderByChild("breedML").equalTo(TextBreed).addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 listSum.clear();
@@ -107,7 +108,7 @@ public class checkPostBreed extends Activity implements LocationListener {
                     ref.orderByChild("Long").startAt(longitude-0.007).endAt(longitude+0.007).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            ref.orderByChild("breedML").equalTo(TextBreed).addValueEventListener(new ValueEventListener() {
+                            ref.orderByChild("Lat").startAt(latitude-0.007).endAt(latitude+0.007).addValueEventListener(new ValueEventListener() {
                                 @Override
                                 public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 

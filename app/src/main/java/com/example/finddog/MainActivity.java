@@ -85,6 +85,8 @@ public class MainActivity extends AppCompatActivity {
 
 
         });
+
+        ImageView imgGoFind = findViewById(R.id.gofind);
         imgGoFind.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
