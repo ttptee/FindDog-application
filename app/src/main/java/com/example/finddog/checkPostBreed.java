@@ -1,8 +1,11 @@
 package com.example.finddog;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.content.Context;
@@ -12,10 +15,18 @@ import android.location.Location;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
+import android.service.autofill.Dataset;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.google.type.LatLng;
 
 import org.w3c.dom.Text;
@@ -29,12 +40,20 @@ import android.location.LocationManager;
 import android.widget.TextView;
 
 import android.util.Log;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class checkPostBreed extends Activity implements LocationListener {
+    RecyclerView ShowSum;
+    List<MissingBlog> listSum;
+    MyAdapter adapter;
+    ArrayList LatList;
     public TextView textView;
     private LocationManager locationManager;
-
+    public String TextBreed;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -42,7 +61,7 @@ public class checkPostBreed extends Activity implements LocationListener {
         setContentView(R.layout.activity_check_post_breed);
 
         SharedPreferences sp = getSharedPreferences("BreedText", Context.MODE_PRIVATE);
-        String TextBreed = sp.getString("BreedMLText", "Error");
+        TextBreed = sp.getString("BreedMLText", "Error");
 
         TextView testBreed = findViewById(R.id.BreedText);
         testBreed.setText(TextBreed);
@@ -71,10 +90,61 @@ public class checkPostBreed extends Activity implements LocationListener {
 
     @Override
     public void onLocationChanged(Location location) {
-        double longitude=location.getLongitude();
-        double latitude = location.getLatitude();
+        final double longitude=location.getLongitude();
+        final double latitude = location.getLatitude();
         textView.setText("Long"+longitude+"\n"+"Lat"+latitude);
+        ShowSum=findViewById(R.id.ShowSumBreed);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        ShowSum.setLayoutManager(layoutManager);
+        listSum = new ArrayList<>();
 
+        final DatabaseReference ref = FirebaseDatabase.getInstance().getReference("postmiss");
+        ref.orderByChild("Lat").startAt(latitude-0.007).endAt(latitude+0.007).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                listSum.clear();
+                for ( final DataSnapshot dss:dataSnapshot.getChildren()){
+                    ref.orderByChild("Long").startAt(longitude-0.007).endAt(longitude+0.007).addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                            ref.orderByChild("breedML").equalTo(TextBreed).addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                                    MissingBlog blog = dss.getValue(MissingBlog.class);
+                                    listSum.add(blog);
+                                    adapter=new MyAdapter(getApplicationContext(), (ArrayList<MissingBlog>) listSum);
+                                    ShowSum.setAdapter(adapter);
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                }
+                            });
+
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
+
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+    }
+
+    private void FoundPost() {
 
     }
 
