@@ -15,12 +15,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-<!--        tools:ignore="GoogleAppIndexingWarning">-->
-        <activity android:name=".SingleAdopt"/>
+
+
+        <meta-data
+            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+            android:value="label" />
+        <activity android:name=".checkPostBreed"></activity>
+        <activity android:name=".profileJ" />
+        <activity android:name=".SingleAdopt" />
         <activity android:name=".SingleMissing" />
         <activity android:name=".viewProfile" />
-        <activity android:name=".allAdoptPost" />
         <activity android:name=".addPostAdopt" />
+        <activity android:name=".allAdoptPost" />
         <activity android:name=".editProfileJ" />
 
         <meta-data

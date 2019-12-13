@@ -41,13 +41,14 @@ public class MainActivity extends AppCompatActivity {
         initialize();
 
         ImageView imgGoLogin = findViewById(R.id.loginbar);
-        imgGoLogin.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(MainActivity.this, loginJ.class);
-                startActivity(i);
-            }
-        });
+    /*ImageView imgGoFind = findViewById(R.id.gofind);*/
+                imgGoLogin.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent i = new Intent(MainActivity.this, loginJ.class);
+            startActivity(i);
+        }
+    });
 
         ImageView imggofinddog = findViewById(R.id.gofinddog);
         imggofinddog.setOnClickListener(new View.OnClickListener() {
@@ -85,6 +86,13 @@ public class MainActivity extends AppCompatActivity {
 
 
         });
+        /*imgGoFind.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent e = new Intent(MainActivity.this, showPicAndML.class);
+                startActivity(e);
+            }
+        });*/
 
         ImageView imgGoFind = findViewById(R.id.gofind);
         imgGoFind.setOnClickListener(new View.OnClickListener() {
@@ -176,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
         for (int i = 0; i < slideLists2.size(); i++) {
             String downloadImage2 = slideLists2.get(i).getImage();
             flipImages2(downloadImage2);
+
 
         }
     }
