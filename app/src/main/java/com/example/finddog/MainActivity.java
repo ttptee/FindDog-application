@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -33,12 +34,13 @@ public class MainActivity extends AppCompatActivity {
     private ViewFlipper viewFlipper;
     private ViewFlipper viewFlipper2;
     DatabaseReference databaseReference2;
-
+    String TAG;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initialize();
+
 
         ImageView imgGoLogin = findViewById(R.id.loginbar);
     /*ImageView imgGoFind = findViewById(R.id.gofind);*/
@@ -79,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
         imggoadopt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.d(TAG, "testDebug: ");
                 Intent i = new Intent(MainActivity.this, allAdoptPost.class);
                 startActivity(i);
             }

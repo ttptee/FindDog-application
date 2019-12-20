@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    package="com.example.finddog">
+        package="com.example.finddog">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -15,19 +14,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-
-        <meta-data
-            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
-            android:value="label" />
-        <activity android:name=".checkPostBreed"></activity>
-        <activity android:name=".profileJ" />
-        <activity android:name=".SingleAdopt" />
+        <!--        tools:ignore="GoogleAppIndexingWarning">-->
+        <activity android:name=".SingleAdopt"/>
         <activity android:name=".SingleMissing" />
         <activity android:name=".viewProfile" />
-        <activity android:name=".addPostAdopt" />
         <activity android:name=".allAdoptPost" />
+        <activity android:name=".addPostAdopt" />
         <activity android:name=".editProfileJ" />
+
+        
 
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
