@@ -2,6 +2,7 @@ package com.example.finddog;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import static androidx.core.content.ContextCompat.startActivity;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyAdapterViewHolder> {
-
+    String TAG;
     public Context c;
     public ArrayList<MissingBlog> arrayList;
     public MyAdapter (Context c, ArrayList<MissingBlog> arrayList)
@@ -74,9 +75,11 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyAdapterViewHolde
                 public void onClick(View v) {
 
                     arrayList.get(getAdapterPosition());
+
                     int mPost_key = getAdapterPosition();
                     Intent singleAdoptPage = new Intent(c,SingleAdopt.class);
                     singleAdoptPage.putExtra("blog_id", mPost_key);
+
                     c.startActivity(singleAdoptPage);
                     Toast.makeText(c, mPost_key,
                             Toast.LENGTH_LONG).show();

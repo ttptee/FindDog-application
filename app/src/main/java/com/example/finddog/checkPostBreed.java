@@ -51,6 +51,7 @@ public class checkPostBreed extends Activity implements LocationListener {
     List<MissingBlog> listSum;
     MyAdapter adapter;
     ArrayList LatList;
+    String TAG;
     public TextView textView;
     private LocationManager locationManager;
     public String TextBreed;
@@ -92,6 +93,7 @@ public class checkPostBreed extends Activity implements LocationListener {
     public void onLocationChanged(Location location) {
         final double longitude=location.getLongitude();
         final double latitude = location.getLatitude();
+
         textView.setText("Long"+longitude+"\n"+"Lat"+latitude);
         ShowSum=findViewById(R.id.ShowSumBreed);
         LinearLayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
@@ -114,8 +116,12 @@ public class checkPostBreed extends Activity implements LocationListener {
 
                                     MissingBlog blog = dss.getValue(MissingBlog.class);
                                     listSum.add(blog);
+                                    Log.d(TAG, "BLOG : "+blog);
+
                                     adapter=new MyAdapter(getApplicationContext(), (ArrayList<MissingBlog>) listSum);
+                                    Log.d(TAG, "adapter : "+adapter);
                                     ShowSum.setAdapter(adapter);
+
                                 }
 
                                 @Override

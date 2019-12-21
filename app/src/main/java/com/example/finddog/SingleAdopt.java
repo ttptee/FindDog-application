@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -75,7 +76,7 @@ public class SingleAdopt extends AppCompatActivity implements View.OnClickListen
 
     private Button imgBtn;
     private ImageView imgShow;
-
+    String TAG;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -103,6 +104,7 @@ public class SingleAdopt extends AppCompatActivity implements View.OnClickListen
 
         databaseReference = FirebaseDatabase.getInstance().getReference().child("postadopt");
         mPost_key = getIntent().getExtras().getString("blog_id");
+
         reff = FirebaseDatabase.getInstance().getReference().child("user");
 
         editTextComment = (EditText) findViewById(R.id.commentBox);
@@ -143,7 +145,9 @@ public class SingleAdopt extends AppCompatActivity implements View.OnClickListen
                 String uid = (String) dataSnapshot.child("uid").getValue();
                 final Double latitude = dataSnapshot.child("Lat").getValue(Double.class);
                 final Double longitude = dataSnapshot.child("Lng").getValue(Double.class);
-
+                Log.d(TAG, "key: "+mPost_key);
+                Log.d(TAG, "name: "+dataSnapshot.child("name").getValue());
+                Log.d(TAG, "breed: "+dataSnapshot.child("breed").getValue());
                 reff.child(uid).addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot dataSnapshot) {

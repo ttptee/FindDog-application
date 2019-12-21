@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,7 +33,7 @@ import java.util.ArrayList;
 public class allAdoptPost extends AppCompatActivity {
 
     private RecyclerView missingList;
-
+    int state = 0;
     private DatabaseReference databaseReference;
     private DatabaseReference databaseReferencee;
 
@@ -40,7 +41,7 @@ public class allAdoptPost extends AppCompatActivity {
     private FirebaseRecyclerAdapter<MissingBlog, ViewHolder> adapter;
 
     private ImageButton searchButton;
-
+    String TAG;
     EditText searchBreed;
     ArrayList<MissingBlog> arrayList;
 
@@ -48,6 +49,7 @@ public class allAdoptPost extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.all_adopt_post);
+
 
         missingList = (RecyclerView) findViewById(R.id.findHomeAll);
         missingList.setHasFixedSize(true);
@@ -92,66 +94,64 @@ public class allAdoptPost extends AppCompatActivity {
             @Override
             public void afterTextChanged(Editable s) {
                 if (!s.toString().isEmpty()){
-                    search(s.toString());
+                    firebaseSearch(s.toString());
                 }
                 else {
-                    search("");
+                    firebaseSearch("");
                 }
             }
         });
 
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 1);
-        missingList.setLayoutManager(gridLayoutManager);
+            GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 1);
+            missingList.setLayoutManager(gridLayoutManager);
 
 
+            options = new FirebaseRecyclerOptions.Builder<MissingBlog>()
+                    .setQuery(databaseReference, MissingBlog.class).build();
+
+            adapter = new FirebaseRecyclerAdapter<MissingBlog, ViewHolder>(options) {
+                @Override
+                protected void onBindViewHolder(ViewHolder viewHolder, int i, final MissingBlog missingBlog) {
+                    Picasso.get().load(missingBlog.getImage()).into(viewHolder.postImg);
+
+                    viewHolder.postName.setText(missingBlog.getName());
+                    viewHolder.postBreed.setText(missingBlog.getBreed());
 
 
+                    final String post_key = getRef(i).getKey();
+                    viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+
+                            Intent singleAdoptPage = new Intent(allAdoptPost.this, SingleAdopt.class);
+
+                            singleAdoptPage.putExtra("blog_id", post_key);
+                            Log.d(TAG, "NORMAL : " + "\n" + "key : " + post_key + "\n" + "postName : " + missingBlog.getName()
+                                    + "\n" + "postBreed : " + missingBlog.getBreed());
+                            startActivity(singleAdoptPage);
+                        }
+                    });
 
 
+                }
 
 
+                @NonNull
+                @Override
+                public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+                    View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.blog_row, parent, false);
 
-        options = new FirebaseRecyclerOptions.Builder<MissingBlog>()
-                .setQuery(databaseReference, MissingBlog.class).build();
-
-        adapter = new FirebaseRecyclerAdapter<MissingBlog, ViewHolder>(options) {
-            @Override
-            protected void onBindViewHolder(ViewHolder viewHolder, int i, MissingBlog missingBlog) {
-                Picasso.get().load(missingBlog.getImage()).into(viewHolder.postImg);
-
-                viewHolder.postName.setText(missingBlog.getName());
-                viewHolder.postBreed.setText(missingBlog.getBreed());
-
-
-                final String post_key = getRef(i).getKey();
-                viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-
-                        Intent singleAdoptPage = new Intent(allAdoptPost.this,SingleAdopt.class);
-                        singleAdoptPage.putExtra("blog_id",post_key);
-                        startActivity(singleAdoptPage);
-                    }
-                });
-
-
-
-            }
-
-            @NonNull
-            @Override
-            public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.blog_row,parent,false);
-
-                return new ViewHolder(view);
-            }
-        };
+                    return new ViewHolder(view);
+                }
+            };
 
        /* GridLayoutManager gridLayoutManager = new GridLayoutManager(getApplicationContext(), 1);
         missingList.setLayoutManager(gridLayoutManager);*/
-        adapter.startListening();
-        missingList.setAdapter(adapter);
+            adapter.startListening();
+            missingList.setAdapter(adapter);
+
+
 
 
 
@@ -168,11 +168,12 @@ public class allAdoptPost extends AppCompatActivity {
                 startActivity(i);
             }
         });
+
     }
 
     private void firebaseSearch(String s) {
 
-        Toast.makeText(allAdoptPost.this,"hi "+s,Toast.LENGTH_LONG).show();
+        Log.d(TAG, "firebaseSearch: String : "+s);
 
         Query firebaseSearchQuery = databaseReference.orderByChild("breed")
                 .startAt(s)
@@ -182,12 +183,13 @@ public class allAdoptPost extends AppCompatActivity {
 
         adapter = new FirebaseRecyclerAdapter<MissingBlog, ViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(ViewHolder viewHolder, int i, MissingBlog missingBlog) {
+            protected void onBindViewHolder(ViewHolder viewHolder, int i, final MissingBlog missingBlog) {
                 Picasso.get().load(missingBlog.getImage()).into(viewHolder.postImg);
 
                 viewHolder.postName.setText(missingBlog.getName());
                 viewHolder.postBreed.setText(missingBlog.getBreed());
-
+                Log.d(TAG, "Search : "+"\n"+"postName : "+missingBlog.getName()
+                        +"\n"+"postBreed : "+missingBlog.getBreed());
 
                 final String post_key = getRef(i).getKey();
                 viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -195,11 +197,14 @@ public class allAdoptPost extends AppCompatActivity {
                     public void onClick(View v) {
 
                         Intent singleAdoptPage = new Intent(allAdoptPost.this,SingleAdopt.class);
+                        singleAdoptPage.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                         singleAdoptPage.putExtra("blog_id",post_key);
+                        Log.d(TAG, "Search : "+"\n"+"key : "+post_key+"\n"+"postName : "+missingBlog.getName()
+                                +"\n"+"postBreed : "+missingBlog.getBreed());
+
                         startActivity(singleAdoptPage);
                     }
-                });adapter.startListening();
-                missingList.setAdapter(adapter);
+                });
 
 
 
@@ -213,49 +218,53 @@ public class allAdoptPost extends AppCompatActivity {
                 return new ViewHolder(view);
             }
         };
+        adapter.startListening();
+        missingList.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
 
     }
 
-    private void search(String s) {
-        Query query = databaseReference.orderByChild("breed")
-                .startAt(s)
-                .endAt(s+"\uf8ff");
-
-        query.addValueEventListener(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                if (dataSnapshot.hasChildren())
-                {
-                    arrayList.clear();
-                    for (DataSnapshot dss : dataSnapshot.getChildren())
-                    {
-                        final MissingBlog missingBlog = dss.getValue(MissingBlog.class);
-                        arrayList.add(missingBlog);
-                        final String pos_key = dss.getKey();
-                        MyAdapter.MyAdapterViewHolder.class.getClass();
-
-
-                        /*if (dss.getKey()!=null){
-                        //final String pos_key = dss.getKey();
-                        Intent singleAdoptPage = new Intent(allAdoptPost.this,SingleAdopt.class);
-                        singleAdoptPage.putExtra("blog_id",pos_key);
-                        startActivity(singleAdoptPage);}*/
-                    }
-
-                    MyAdapter myAdapter = new MyAdapter(getApplicationContext(),arrayList);
-                    missingList.setAdapter(myAdapter);
-                    myAdapter.notifyDataSetChanged();
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });
-
-    }
+//    private void search(String s) {
+//        Query query = databaseReference.orderByChild("breed")
+//                .startAt(s)
+//                .endAt(s+"\uf8ff");
+//
+//        query.addValueEventListener(new ValueEventListener() {
+//            @Override
+//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+//                if (dataSnapshot.hasChildren())
+//                {
+//                    arrayList.clear();
+//                    for (DataSnapshot dss : dataSnapshot.getChildren())
+//                    {
+//                        final MissingBlog missingBlog = dss.getValue(MissingBlog.class);
+//                        arrayList.add(missingBlog);
+//                        final String pos_key = dss.getKey();
+//                        MyAdapter.MyAdapterViewHolder.class.getClass();
+//
+//
+////                        if (dss.getKey()!=null){
+////                        //final String pos_key = dss.getKey();
+////                        Intent singleAdoptPage = new Intent(allAdoptPost.this,SingleAdopt.class);
+////                        singleAdoptPage.putExtra("blog_id",pos_key);
+////                        startActivity(singleAdoptPage);}
+//                    }
+//
+//                    MyAdapter myAdapter = new MyAdapter(getApplicationContext(),arrayList);
+//                    missingList.setAdapter(myAdapter);
+//                    myAdapter.notifyDataSetChanged();
+//
+//                    Log.d(TAG, "State: "+state);
+//                }
+//            }
+//
+//            @Override
+//            public void onCancelled(@NonNull DatabaseError databaseError) {
+//
+//            }
+//        });
+//
+//    }
 
 
 

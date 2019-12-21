@@ -21,13 +21,15 @@
         <activity android:name=".allAdoptPost" />
         <activity android:name=".addPostAdopt" />
         <activity android:name=".editProfileJ" />
+        <activity android:name=".loginJ" />
+        <activity android:name=".registerJ" />
+        <activity android:name=".detaildogJava" />
+        <activity android:name=".showPicAndML" />
+        <activity android:name=".AllMissingPost" />
+        <activity android:name=".checkPostBreed"/>
 
-        
 
-        <meta-data
-            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
-            android:value="label" />
-        <activity android:name=".checkPostBreed"></activity>
+
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -35,11 +37,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".loginJ" />
-        <activity android:name=".registerJ" />
-        <activity android:name=".detaildogJava" />
-        <activity android:name=".showPicAndML" />
-        <activity android:name=".AllMissingPost" />
+        <meta-data
+            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+            android:value="label" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
