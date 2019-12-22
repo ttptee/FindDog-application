@@ -105,7 +105,7 @@ public class AllMissingPost extends FragmentActivity implements OnMapReadyCallba
 
         adapter = new FirebaseRecyclerAdapter<MissingBlog, ViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(ViewHolder viewHolder, int i, MissingBlog missingBlog) {
+            protected void onBindViewHolder(ViewHolder viewHolder, int i, final MissingBlog missingBlog) {
                 Picasso.get().load(missingBlog.getImage()).into(viewHolder.postImg);
 
                 viewHolder.postName.setText(missingBlog.getName());
@@ -117,6 +117,10 @@ public class AllMissingPost extends FragmentActivity implements OnMapReadyCallba
                     public void onClick(View v) {
                         Intent singleMissingPage = new Intent(AllMissingPost.this,SingleMissing.class);
                         singleMissingPage.putExtra("blog_id",post_key);
+                        Log.d(TAG, "blog_id : "+post_key);
+                        Log.d(TAG, "getName : "+missingBlog.getName());
+                        Log.d(TAG, "getBreed : "+missingBlog.getBreed());
+
                         startActivity(singleMissingPage);
                     }
                 });
@@ -125,8 +129,8 @@ public class AllMissingPost extends FragmentActivity implements OnMapReadyCallba
             @NonNull
             @Override
             public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.blog_row,parent,false);
 
+                View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.blog_row,parent,false);
                 return new ViewHolder(view);
             }
         };

@@ -26,9 +26,12 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.firestore.util.AsyncQueue;
 import com.squareup.picasso.Picasso;
 
+import java.sql.Time;
 import java.util.ArrayList;
+import java.util.concurrent.Delayed;
 
 public class allAdoptPost extends AppCompatActivity {
 
@@ -178,6 +181,7 @@ public class allAdoptPost extends AppCompatActivity {
         Query firebaseSearchQuery = databaseReference.orderByChild("breed")
                 .startAt(s)
                 .endAt(s+"\uf8ff");
+
         options = new FirebaseRecyclerOptions.Builder<MissingBlog>()
                 .setQuery(firebaseSearchQuery, MissingBlog.class).build();
 
@@ -185,7 +189,6 @@ public class allAdoptPost extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(ViewHolder viewHolder, int i, final MissingBlog missingBlog) {
                 Picasso.get().load(missingBlog.getImage()).into(viewHolder.postImg);
-
                 viewHolder.postName.setText(missingBlog.getName());
                 viewHolder.postBreed.setText(missingBlog.getBreed());
                 Log.d(TAG, "Search : "+"\n"+"postName : "+missingBlog.getName()
@@ -214,14 +217,14 @@ public class allAdoptPost extends AppCompatActivity {
             @Override
             public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
                 View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.blog_row,parent,false);
-
+                Log.d(TAG, "ViewHolder!! ");
                 return new ViewHolder(view);
             }
         };
         adapter.startListening();
         missingList.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
-
+//        adapter.notifyDataSetChanged();
+        Log.d(TAG, "adapter!! ");
     }
 
 //    private void search(String s) {

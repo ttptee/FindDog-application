@@ -162,7 +162,7 @@ public class SingleMissing extends FragmentActivity implements OnMapReadyCallbac
 
     }
         @Override
-        public void onMapReady(GoogleMap googleMap) {
+        public void onMapReady(GoogleMap googleMap)  {
             mMap=googleMap;
             databaseReference.child(mPost_key).addValueEventListener(new ValueEventListener() {
             @Override

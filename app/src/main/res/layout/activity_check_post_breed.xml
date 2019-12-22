@@ -7,7 +7,7 @@
     tools:context=".checkPostBreed">
 
 
-    <TextView
+    <!--<TextView
         android:id="@+id/Lat"
         android:layout_width="120dp"
         android:layout_height="60sp"
@@ -16,27 +16,36 @@
         app:layout_constraintEnd_toStartOf="@+id/BreedText"
         app:layout_constraintHorizontal_bias="0.449"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent" />-->
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:text="ประกาศน้องหมาหายในระยะใกล้เคียง"
+        android:textSize="20dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+    </TextView>
 
     <TextView
         android:id="@+id/BreedText"
         android:layout_width="134dp"
         android:layout_height="30dp"
-        android:layout_marginTop="60dp"
+        android:layout_marginBottom="19dp"
+        android:gravity="center"
         android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/ShowSumBreed"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.859"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/ShowSumBreed"
         android:layout_width="413dp"
-        android:layout_height="208dp"
+        android:layout_height="600dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.451" />
+        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
