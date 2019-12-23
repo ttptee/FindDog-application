@@ -344,7 +344,12 @@ public class SingleMissing extends FragmentActivity implements OnMapReadyCallbac
     @Override
     public void onClick(View v) {
         if (v == buttonSendComment) {
-            sendComment();
+            if (firebaseAuth.getCurrentUser() == null) {
+                Toast.makeText(SingleMissing.this, "Please Login.", Toast.LENGTH_SHORT).show();
+                finish();
+                startActivity(new Intent(SingleMissing.this, loginJ.class));
+            }
+            else sendComment();
         }
 
         if(v==backButton){
