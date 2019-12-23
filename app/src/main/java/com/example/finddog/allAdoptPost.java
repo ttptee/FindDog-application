@@ -58,6 +58,7 @@ public class allAdoptPost extends AppCompatActivity {
         missingList.setHasFixedSize(true);
 
         searchBreed = (EditText)findViewById(R.id.searchbreed);
+
         arrayList = new ArrayList<>();
 
         ImageView logogo = findViewById(R.id.logo);
