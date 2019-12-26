@@ -73,10 +73,14 @@ public class showPicAndML extends AppCompatActivity {
         GoGallery.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentGoGal = new Intent(Intent.ACTION_GET_CONTENT);
+               /* Intent intentGoGal = new Intent(Intent.ACTION_GET_CONTENT);
                 intentGoGal.setType("image/*");
                 startActivityForResult(Intent.createChooser(intentGoGal
-                        , "Select photo from"), 1);
+                        , "Select photo from"), 1);*/
+                Intent intentGoGal = new Intent(Intent.ACTION_GET_CONTENT);
+                intentGoGal.setType("image/*");
+                startActivityForResult(intentGoGal, 1);
+
             }
         });
         Button goCheckpostandBreedbtn = findViewById(R.id.submitBreed);
@@ -104,6 +108,7 @@ public class showPicAndML extends AppCompatActivity {
 
 public void onActivityResult(int requestCode, int resultCode
         , Intent data) {
+    super.onActivityResult(requestCode, resultCode, data);
     if (requestCode == 1 && resultCode == RESULT_OK) {
         Uri uri = data.getData();
 
@@ -119,13 +124,16 @@ public void onActivityResult(int requestCode, int resultCode
     }
     else {
 
-            super.onActivityResult(requestCode, resultCode, data);
-            Bitmap bitmap = (Bitmap)data.getExtras().get("data");
+        Log.e(TAG, "go back " );
+
+           /* super.onActivityResult(requestCode, resultCode, data);*/
+
+           /* Bitmap bitmap = (Bitmap)data.getExtras().get("data");
             imageView.setImageBitmap(bitmap);
             imageFromBitmap(bitmap);
 
 
-            FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(bitmap);
+            FirebaseVisionImage image = FirebaseVisionImage.fromBitmap(bitmap);*/
     }
 }
     /////////////////////////////////////////
