@@ -113,7 +113,7 @@
                 android:textSize="15dp"
                 app:defaultQueryHint="enter breed"
                 app:iconifiedByDefault="false"
-                android:imeOptions="actionSearch"
+                android:imeOptions="actionDone"
                 app:searchIcon="@null" />
 
             <ImageButton
