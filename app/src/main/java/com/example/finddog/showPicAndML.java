@@ -53,12 +53,13 @@ public class showPicAndML extends AppCompatActivity {
     private static final String TAG = "ODAutoMLILProcessor";
     public EditText inputBreedEdittext;
     public String text;
+    public TextView Predict;
     ImageView imageView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_show_pic_and_ml);
-
+        Predict = (TextView) findViewById(R.id.textViewPredict);
         Button Gocamera = (Button)findViewById(R.id.camerabtn);
          imageView = findViewById(R.id.showPic);
 
@@ -67,6 +68,7 @@ public class showPicAndML extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intent,0);
+                Predict.setText("Image Error pls try again");
             }
         });
         Button GoGallery = findViewById(R.id.importpicbtn);
@@ -95,6 +97,7 @@ public class showPicAndML extends AppCompatActivity {
                 if (BreedEdittext.isEmpty()){
                 editor.putString("BreedMLText",text);
                 editor.commit();}
+
                 else {
                     editor.putString("BreedMLText",BreedEdittext);
                     editor.commit();
@@ -111,7 +114,7 @@ public void onActivityResult(int requestCode, int resultCode
     super.onActivityResult(requestCode, resultCode, data);
     if (requestCode == 1 && resultCode == RESULT_OK) {
         Uri uri = data.getData();
-
+        Predict.setText("Image Error pls try again");
         Bitmap bitmap = null;
         try {
             bitmap = MediaStore.Images.Media.getBitmap(showPicAndML.this.getContentResolver(), uri);
@@ -226,14 +229,15 @@ public void onActivityResult(int requestCode, int resultCode
                         public void onSuccess(List<FirebaseVisionImageLabel> labels) {
                             // Task completed successfully
                             // ...
+
+
                             for (FirebaseVisionImageLabel label: labels) {
                                  text = label.getText();
                                 String text2 = label.getEntityId();
                                 float confidence = label.getConfidence();
-                                TextView Predict = (TextView) findViewById(R.id.textViewPredict);
 
 
-
+                                Log.d(TAG, "Text: "+text);
                                 Predict.setText(text+" "+confidence*100+"%");
 
 
@@ -250,6 +254,7 @@ public void onActivityResult(int requestCode, int resultCode
                         public void onFailure(@NonNull Exception e) {
                             // Task failed with an exception
                             // ...
+                            Log.d(TAG, "onFailure: ");
                             TextView Predict = (TextView) findViewById(R.id.textViewPredict);
                             Predict.setText("Predict failed pls try again");
 
