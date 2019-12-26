@@ -68,7 +68,7 @@ public class showPicAndML extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(intent,0);
-                Predict.setText("Image Error pls try again");
+                Predict.setText("Image Error please try again");
             }
         });
         Button GoGallery = findViewById(R.id.importpicbtn);
@@ -114,7 +114,7 @@ public void onActivityResult(int requestCode, int resultCode
     super.onActivityResult(requestCode, resultCode, data);
     if (requestCode == 1 && resultCode == RESULT_OK) {
         Uri uri = data.getData();
-        Predict.setText("Image Error pls try again");
+        Predict.setText("Image Error please try again");
         Bitmap bitmap = null;
         try {
             bitmap = MediaStore.Images.Media.getBitmap(showPicAndML.this.getContentResolver(), uri);
