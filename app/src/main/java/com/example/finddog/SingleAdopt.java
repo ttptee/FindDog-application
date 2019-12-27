@@ -301,19 +301,15 @@ public class SingleAdopt extends AppCompatActivity implements View.OnClickListen
     public void onClick(View v) {
 
         if (v == buttonSendComment) {
-            /*Toast.makeText(SingleMissing.this,"send by click",Toast.LENGTH_SHORT).show();*/
             if (firebaseAuth.getCurrentUser() == null) {
                 Toast.makeText(SingleAdopt.this, "Please Login.", Toast.LENGTH_SHORT).show();
                 finish();
                 startActivity(new Intent(SingleAdopt.this, loginJ.class));
             }
-            sendComment();
-            /*Toast.makeText(SingleMissing.this, "Add Complete", Toast.LENGTH_SHORT).show();*/
-
-
+            else sendComment();
         }
 
-        if (v == backButton) {
+        if(v==backButton){
             finish();
         }
     }
